@@ -100,9 +100,7 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertTrue(self::$filterInstance->hasConfigs());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function test_can_check_if_can_set_pill_format(): void
     {
         self::$filterInstance->config([]);
@@ -115,9 +113,7 @@ final class DateTimeFilterTest extends FilterTestCase
 
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function test_can_check_if_can_set_default_values(): void
     {
         $this->assertNull(self::$filterInstance->getFilterDefaultValue());
@@ -127,9 +123,7 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('2023-01-01T10:00', self::$filterInstance->getFilterDefaultValue());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_set_custom_filter_view(): void
     {
         $this->assertSame('livewire-tables::components.tools.filters.datetime', self::$filterInstance->getViewPath());
@@ -137,9 +131,7 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('test-custom-filter-view', self::$filterInstance->getViewPath());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function test_can_get_filter_pills_value(): void
     {
         $dateTime = (new DateTime('now'));
@@ -147,9 +139,7 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame($dateTime->format('d M Y - H:i'), self::$filterInstance->getFilterPillValue($dateTime->format('Y-m-d\TH:i')));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function test_can_not_get_filter_pills_invalid_value(): void
     {
         $dateTime = (new DateTime('now'));

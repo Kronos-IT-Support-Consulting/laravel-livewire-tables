@@ -6,6 +6,7 @@ use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\Test;
 
 class SortingVisualsTest extends TestCase
@@ -159,11 +160,8 @@ class SortingVisualsTest extends TestCase
             ->assertDontSee('Name2: A-Z');
     }
 
-    /**
-     * @test
-     *
-     * @depends test_array_setup
-     */
+    #[Test]
+    #[Depends("test_array_setup")]
     public function default_sorting_gets_applied_if_set_and_there_are_no_sorts(array $petNames): void
     {
         Livewire::test(PetsTable::class)
@@ -172,11 +170,8 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->rsortNames);
     }
 
-    /**
-     * @test
-     *
-     * @depends test_array_setup
-     */
+    #[Test]
+    #[Depends("test_array_setup")]
     public function sort_direction_can_only_be_asc_or_desc(array $petNames): void
     {
         // If not asc, desc, default to asc
@@ -191,11 +186,8 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->rsortNames);
     }
 
-    /**
-     * @test
-     *
-     * @depends test_array_setup
-     */
+    #[Test]
+    #[Depends("test_array_setup")]
     public function skip_sorting_column_if_it_does_not_have_a_field(array $petNames): void
     {
         // Other col is a label therefore has no field
@@ -205,11 +197,8 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->default10);
     }
 
-    /**
-     * @test
-     *
-     * @depends test_array_setup
-     */
+    #[Test]
+    #[Depends("test_array_setup")]
     public function skip_sorting_column_if_it_is_not_sortable(array $petNames): void
     {
         // Other col is a label therefore is not sortable
@@ -219,11 +208,8 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->default10);
     }
 
-    /**
-     * @test
-     *
-     * @depends test_array_setup
-     */
+    #[Test]
+    #[Depends("test_array_setup")]
     public function sort_field_and_direction_are_applied_if_no_sort_callback(array $petNames): void
     {
         // TODO: Test that there is no callback
@@ -233,12 +219,10 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->rsortNames);
     }
 
-    /**
-     * @test
-     *
-     * @depends testArraySetup
-     */
-    /*public function sort_events_apply_correctly(): void
+    /*
+    #[Test]
+    #[Depends("testArraySetup")]
+    public function sort_events_apply_correctly(): void
     {
         Livewire::test(PetsTable::class)
             ->assertSeeInOrder($this->default10)

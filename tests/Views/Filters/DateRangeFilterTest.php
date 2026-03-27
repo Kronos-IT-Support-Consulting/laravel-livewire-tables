@@ -393,9 +393,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame('2022-05-05 to 2022-06-06', $filter->getDateString('2022-05-05,to,2022-06-06'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_set_custom_filter_view(): void
     {
         $filter = DateRangeFilter::make('Active');

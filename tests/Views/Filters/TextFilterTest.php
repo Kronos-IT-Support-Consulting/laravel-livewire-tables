@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
 
 final class TextFilterTest extends FilterTestCase
@@ -60,9 +61,7 @@ final class TextFilterTest extends FilterTestCase
         $this->assertFalse($filter->isEmpty('test'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_set_custom_filter_view(): void
     {
         $filter = TextFilter::make('Active');

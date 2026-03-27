@@ -355,9 +355,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertFalse($filter->isResetByClearButton());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_set_custom_filter_view(): void
     {
         $filter = NumberRangeFilter::make('Active');

@@ -185,9 +185,7 @@ class NumberFilterTest extends TestCase
         $this->assertFalse($filter->isEmpty('123'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function test_can_check_if_can_set_default_value(): void
     {
         $filter = NumberFilter::make('Active');
@@ -199,9 +197,7 @@ class NumberFilterTest extends TestCase
         $this->assertSame('123', $filter->getFilterDefaultValue());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_set_custom_filter_view(): void
     {
         $filter = NumberFilter::make('Active');

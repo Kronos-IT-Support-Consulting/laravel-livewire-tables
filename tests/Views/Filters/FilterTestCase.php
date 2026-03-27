@@ -104,9 +104,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->isResetByClearButton());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_set_custom_filter_view(): void
     {
         $this->assertSame('livewire-tables::components.tools.filters.datetime', self::$filterInstance->getViewPath());

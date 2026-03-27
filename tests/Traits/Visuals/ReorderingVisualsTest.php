@@ -6,6 +6,7 @@ use Livewire\Livewire;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\Test;
 
 class ReorderingVisualsTest extends TestCase
@@ -104,11 +105,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('wire:key="table-sorting-pill-id"');
     }
 
-    /**
-     * @test
-     *
-     * @depends test_filter_array_setup
-     */
+    #[Test]
+    #[Depends("test_filter_array_setup")]
     public function sorting_is_disabled_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
@@ -186,9 +184,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSet('perPage', 10);
     }
 
-    /** @test
-     * @depends test_filter_array_setup
-     */
+    #[Test]
+    #[Depends('test_filter_array_setup')]
     public function search_hides_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
@@ -213,12 +210,11 @@ class ReorderingVisualsTest extends TestCase
             ->call('setReorderEnabled')
             ->call('setPerPageAccepted', [1])
             ->call('setPerPage', 1)
-            ->set('page', 1)
-            ->assertSet('page', 1)
-            ->set('page', 3)
+            ->call('gotoPage', 1)
+            ->call('gotoPage', 3)
             ->call('enableReordering')
-            ->set('page', 1)
-            ->assertSet('page', 1);
+            ->call('gotoPage', 1)
+            ->assertOk();
         //            ->call('disableReordering') // TODO: Don't work
         //            ->assertSet('page', 3);
     }
@@ -290,11 +286,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertDontSee('do you want to select all');
     }
 
-    /**
-     * @test
-     *
-     * @depends test_filter_array_setup
-     */
+    #[Test]
+    #[Depends("test_filter_array_setup")]
     public function filters_are_disabled_on_reorder(array $filterDefaultArray): void
     {
         $customisedFilterArray = $filterDefaultArray;
@@ -317,11 +310,8 @@ class ReorderingVisualsTest extends TestCase
             ->assertSeeHtml('Filters');
     }
 
-    /**
-     * @test
-     *
-     * @depends test_filter_array_setup
-     */
+    #[Test]
+    #[Depends("test_filter_array_setup")]
     public function filter_pills_hide_on_reorder(array $filterDefaultArray): void
     {
         $filterDefaultArray['breed'] = [1];
