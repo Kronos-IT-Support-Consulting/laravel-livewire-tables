@@ -97,7 +97,7 @@ final class DateFilterTest extends FilterTestCase
         $this->assertSame('2020-01-01', self::$filterInstance->validate('2020-01-01'));
     }*/
 
-    /** @test */
+    #[Test]
     public function can_get_filter_configs(): void
     {
         self::$filterInstance->config([]);
@@ -111,7 +111,7 @@ final class DateFilterTest extends FilterTestCase
             'pillFormat' => 'd M Y', 'foo' => 'bar'], self::$filterInstance->getConfigs());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_has_configs(): void
     {
         self::$filterInstance->config([]);
@@ -123,7 +123,7 @@ final class DateFilterTest extends FilterTestCase
         $this->assertTrue(self::$filterInstance->hasConfigs());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_callback(): void
     {
         $this->assertFalse(self::$filterInstance->hasFilterCallback());

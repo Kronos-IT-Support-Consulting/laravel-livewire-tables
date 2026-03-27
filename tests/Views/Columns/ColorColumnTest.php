@@ -5,9 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ColorColumn;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ColorColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_set_the_column_title(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
@@ -15,7 +17,7 @@ class ColorColumnTest extends TestCase
         $this->assertSame('Favorite Color', $column->getTitle());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_the_column_view(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
@@ -23,7 +25,7 @@ class ColorColumnTest extends TestCase
         $this->assertSame('livewire-tables::includes.columns.color', $column->getView());
     }
 
-    /** @test */
+    #[Test]
     public function can_infer_field_name_from_title_if_no_from(): void
     {
         $column = ColorColumn::make('Favorite Color');
@@ -31,7 +33,7 @@ class ColorColumnTest extends TestCase
         $this->assertNull($column->getField());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_base_field_from_from(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
@@ -39,7 +41,7 @@ class ColorColumnTest extends TestCase
         $this->assertSame('favorite_color', $column->getField());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_default_value(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color')->defaultValue('#FEFEFE');
@@ -47,7 +49,7 @@ class ColorColumnTest extends TestCase
         $this->assertSame('#FEFEFE', $column->getDefaultValue());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_relation_field_from_from(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
@@ -55,7 +57,7 @@ class ColorColumnTest extends TestCase
         $this->assertSame('favorite_color', $column->getField());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_color_callback_presence(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
@@ -77,14 +79,14 @@ class ColorColumnTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function can_check_attribute_callback_presence(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
         $this->assertFalse($column->hasAttributesCallback());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_attribute_callback(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
@@ -100,7 +102,7 @@ class ColorColumnTest extends TestCase
         $this->assertTrue($column->hasAttributesCallback());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_attribute_callback(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color')->attributes(function ($row) {
@@ -113,7 +115,7 @@ class ColorColumnTest extends TestCase
         $this->assertSame(['class' => '!rounded-lg self-center', 'default' => true], $column->getAttributeBag($rows->first())->getAttributes());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_column_formatted_contents(): void
     {
         $column = ColorColumn::make('Favorite Color', 'favorite_color');
@@ -131,7 +133,7 @@ class ColorColumnTest extends TestCase
         $this->assertSame($currentRow->favorite_color, $column->getColor($currentRow));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_column_contents_from_color(): void
     {
         $column = ColorColumn::make('Species Color')->color(
@@ -157,7 +159,7 @@ class ColorColumnTest extends TestCase
         $this->assertSame('#008000', app()->call($column->getColorCallback(), ['row' => $rows->slice(2, 1)->first()]));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_column_color_from_color(): void
     {
         $column = ColorColumn::make('Species Color')->color(

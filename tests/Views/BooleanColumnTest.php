@@ -7,9 +7,11 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class BooleanColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function boolean_column_can_not_be_a_label(): void
     {
         $this->expectException(DataTableConfigurationException::class);
@@ -17,7 +19,7 @@ class BooleanColumnTest extends TestCase
         BooleanColumn::make('Name')->label(fn () => 'My Label')->getContents(Pet::find(1));
     }
 
-    /** @test */
+    #[Test]
     public function boolean_column_can_be_yes_no(): void
     {
         $column = BooleanColumn::make('Name');

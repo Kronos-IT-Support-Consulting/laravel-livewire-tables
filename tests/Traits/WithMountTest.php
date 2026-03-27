@@ -5,9 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableMount;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class WithMountTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function mounttable_gets_correct_first_item(): void
     {
         $view = view('livewire-tables::datatable');

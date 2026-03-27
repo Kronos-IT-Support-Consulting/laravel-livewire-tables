@@ -4,9 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ReorderingConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_set_reorder_status(): void
     {
         $this->assertFalse($this->basicTable->getReorderStatus());
@@ -28,7 +30,7 @@ class ReorderingConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getReorderStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_currently_reordering_status(): void
     {
         $this->assertFalse($this->basicTable->getCurrentlyReorderingStatus());
@@ -50,7 +52,7 @@ class ReorderingConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getCurrentlyReorderingStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_hide_reorder_column_unless_reordering_status(): void
     {
         $this->assertFalse($this->basicTable->getHideReorderColumnUnlessReorderingStatus());
@@ -72,7 +74,7 @@ class ReorderingConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getHideReorderColumnUnlessReorderingStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_reorder_method(): void
     {
         $this->assertSame('reorder', $this->basicTable->getReorderMethod());
@@ -82,7 +84,7 @@ class ReorderingConfigurationTest extends TestCase
         $this->assertSame('reorderMe', $this->basicTable->getReorderMethod());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_default_reorder_column_and_direction(): void
     {
         $this->assertSame('sort', $this->basicTable->getDefaultReorderColumn());

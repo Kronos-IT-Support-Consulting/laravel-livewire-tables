@@ -8,9 +8,11 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ComponentColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_set_the_column_title(): void
     {
         $column = ComponentColumn::make('Name', 'name');
@@ -18,7 +20,7 @@ class ComponentColumnTest extends TestCase
         $this->assertSame('Name', $column->getTitle());
     }
 
-    /** @test */
+    #[Test]
     public function can_not_set_component_column_as_label(): void
     {
         $this->expectException(DataTableConfigurationException::class);
@@ -28,7 +30,7 @@ class ComponentColumnTest extends TestCase
         $column->getContents($row);
     }
 
-    /** @test */
+    #[Test]
     public function can_not_be_both_collapsible_on_mobile_and_on_tablet(): void
     {
         $this->expectException(DataTableConfigurationException::class);

@@ -13,19 +13,19 @@ abstract class FilterTestCase extends TestCase
         parent::setUp();
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_name(): void
     {
         $this->assertSame('Active', self::$filterInstance->getName());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_key(): void
     {
         $this->assertSame('active', self::$filterInstance->getKey());
     }
 
-    /** @test */
+    #[Test]
     public function get_a_single_filter_config(): void
     {
         self::$filterInstance->config(['foo' => 'bar']);
@@ -33,13 +33,13 @@ abstract class FilterTestCase extends TestCase
         $this->assertSame('bar', self::$filterInstance->getConfig('foo'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_default_value(): void
     {
         $this->assertNull(self::$filterInstance->getDefaultValue());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_pill_title(): void
     {
         $this->assertSame('Active', self::$filterInstance->getFilterPillTitle());
@@ -49,7 +49,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertSame('User Date', self::$filterInstance->getFilterPillTitle());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_filter_config_by_name(): void
     {
         self::$filterInstance->config(['foo' => 'bar']);
@@ -58,7 +58,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->hasConfig('bar'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_menus(): void
     {
         $this->assertFalse(self::$filterInstance->isHiddenFromMenus());
@@ -70,7 +70,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->isVisibleInMenus());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_pills(): void
     {
         $this->assertFalse(self::$filterInstance->isHiddenFromPills());
@@ -82,7 +82,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->isVisibleInPills());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_count(): void
     {
         $this->assertFalse(self::$filterInstance->isHiddenFromFilterCount());
@@ -94,7 +94,7 @@ abstract class FilterTestCase extends TestCase
         $this->assertFalse(self::$filterInstance->isVisibleInFilterCount());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_reset_by_clear_button(): void
     {
         $this->assertTrue(self::$filterInstance->isResetByClearButton());

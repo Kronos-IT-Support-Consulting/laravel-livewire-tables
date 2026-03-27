@@ -4,9 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class DebugHelpersTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_get_debug_status(): void
     {
         $this->assertTrue($this->basicTable->debugIsDisabled());

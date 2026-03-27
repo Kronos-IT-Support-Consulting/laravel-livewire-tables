@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberRangeFilter;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class NumberRangeFilterTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_get_filter_name(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -16,7 +18,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame('Active', $filter->getName());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_key(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -24,7 +26,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame('active', $filter->getKey());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_configs(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -38,7 +40,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(array_merge($defaultConfig, ['foo' => 'bar']), $filter->getConfigs());
     }
 
-    /** @test */
+    #[Test]
     public function get_a_single_filter_config(): void
     {
         $filter = NumberRangeFilter::make('Active')
@@ -47,7 +49,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame('bar', $filter->getConfig('foo'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_if_empty(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -72,14 +74,14 @@ class NumberRangeFilterTest extends TestCase
         $this->assertFalse($filter->isEmpty(['min' => 10, 'max' => '100']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_accepts_valid_values(): void
     {
         $filter = NumberRangeFilter::make('Active');
         $this->assertSame(['min' => 5, 'max' => 100], $filter->validate(['min' => '5', 'max' => '100']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_invalid_values(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -89,7 +91,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 15, 'max' => 50], $filter->validate(['min' => '15', 'max' => '50']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_missing_values(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -98,7 +100,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 15, 'max' => 50], $filter->validate(['min' => 15, 'max' => 50]));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_values_over_configmax(): void
     {
         $filter = NumberRangeFilter::make('Active')->config(['minRange' => '0', 'maxRange' => '100']);
@@ -107,7 +109,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 15, 'max' => 50], $filter->validate(['min' => '15', 'max' => '50']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_values_below_configmax(): void
     {
         $filter = NumberRangeFilter::make('Active')->config(['minRange' => '0', 'maxRange' => '100']);
@@ -116,7 +118,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 15, 'max' => 50], $filter->validate(['min' => '15', 'max' => '50']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_flips_values_min_larger_than_max(): void
     {
         $filter = NumberRangeFilter::make('Active')->config(['minRange' => '0', 'maxRange' => '100']);
@@ -125,7 +127,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 50, 'max' => 80], $filter->validate(['min' => '80', 'max' => '50']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_flips_values_max_smaller_than_min_orderflipped(): void
     {
         $filter = NumberRangeFilter::make('Active')->config(['minRange' => '0', 'maxRange' => '100']);
@@ -137,7 +139,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 50, 'max' => 80], $filter->validate(['max' => '50', 'min' => '80']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_fails_values_empty_string(): void
     {
         $filter = NumberRangeFilter::make('Active')->config(['minRange' => '0', 'maxRange' => '100']);
@@ -146,7 +148,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 50, 'max' => 80], $filter->validate(['min' => '80', 'max' => '50']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_fails_values_null_values(): void
     {
         $filter = NumberRangeFilter::make('Active')->config(['minRange' => 0, 'maxRange' => 100]);
@@ -158,7 +160,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 50, 'max' => 80], $filter->validate(['min' => '80', 'max' => '50']));
     }
 
-    /** @test */
+    #[Test]
     public function filter_pill_values_can_be_set_for_numberrange(): void
     {
         $filter = NumberRangeFilter::make('Active')->config(['minRange' => '10', 'maxRange' => '100']);
@@ -169,7 +171,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertEquals('', $filter->getFilterPillValue(['min' => 'd0', 'max' => '76']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_fails_non_numeric_values(): void
     {
         $filter = NumberRangeFilter::make('Active')->config(['minRange' => '0', 'maxRange' => '100']);
@@ -179,7 +181,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 50, 'max' => 80], $filter->validate(['min' => 50, 'max' => 80]));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_values_fault_configs(): void
     {
         $filter = NumberRangeFilter::make('Active')->config(['minRange' => 0, 'maxRange' => 100]);
@@ -187,7 +189,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 15, 'max' => 50], $filter->validate(['min' => 15, 'max' => 50]));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_options(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -198,7 +200,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min' => 0, 'max' => 100, 'foo' => 'bar'], $filter->getOptions());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_keys(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -206,7 +208,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame(['min', 'max'], $filter->getKeys());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_default_value(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -214,7 +216,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame([], $filter->getDefaultValue());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_callback(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -231,7 +233,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertIsCallable($filter->getFilterCallback());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_pill_title(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -244,7 +246,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame('User Status', $filter->getFilterPillTitle());
     }
 
-    /** @test */
+    // #[Test]
     /*
     public function can_get_filter_pill_value(): void
     {
@@ -260,7 +262,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame('baz', $filter->getFilterPillValue('foo'));
     }*/
 
-    /** @test */
+    // #[Test]
     /*
     public function can_get_nested_filter_pill_value(): void
     {
@@ -276,7 +278,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertSame('etc', $filter->getFilterPillValue('bar'));
     }*/
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_has_configs(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -289,7 +291,7 @@ class NumberRangeFilterTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function can_check_filter_config_by_name(): void
     {
         $filter = NumberRangeFilter::make('Active')
@@ -299,7 +301,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertFalse($filter->hasConfig('bar'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_menus(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -313,7 +315,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInMenus());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_pills(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -327,7 +329,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInPills());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_count(): void
     {
         $filter = NumberRangeFilter::make('Active');
@@ -341,7 +343,7 @@ class NumberRangeFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInFilterCount());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_reset_by_clear_button(): void
     {
         $filter = NumberRangeFilter::make('Active');

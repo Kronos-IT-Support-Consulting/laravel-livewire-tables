@@ -4,9 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class SearchHelpersTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_see_if_there_is_a_search_term(): void
     {
         $this->assertFalse($this->basicTable->hasSearch());
@@ -16,7 +18,7 @@ class SearchHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasSearch());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_search_term(): void
     {
         $this->basicTable->setSearch('Anthony');
@@ -24,7 +26,7 @@ class SearchHelpersTest extends TestCase
         $this->assertSame('Anthony', $this->basicTable->getSearch());
     }
 
-    /** @test */
+    #[Test]
     public function can_clear_current_search(): void
     {
         $this->basicTable->setSearch('Anthony');
@@ -36,7 +38,7 @@ class SearchHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->hasSearch());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_search_status(): void
     {
         $this->assertTrue($this->basicTable->searchIsEnabled());
@@ -50,7 +52,7 @@ class SearchHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->searchIsEnabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_search_visibility_status(): void
     {
         $this->assertTrue($this->basicTable->searchVisibilityIsEnabled());
@@ -64,7 +66,7 @@ class SearchHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->searchVisibilityIsEnabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_search_debounce_is_set(): void
     {
         $this->assertFalse($this->basicTable->hasSearchDebounce());
@@ -74,7 +76,7 @@ class SearchHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasSearchDebounce());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_search_defer_is_set(): void
     {
         $this->assertFalse($this->basicTable->hasSearchDefer());
@@ -84,7 +86,7 @@ class SearchHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasSearchDefer());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_search_blur_is_set(): void
     {
         $this->assertFalse($this->basicTable->hasSearchBlur());
@@ -94,7 +96,7 @@ class SearchHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasSearchBlur());
     }
 
-    /** @test */
+    // #[Test]
     /*public function can_check_if_search_lazy_is_set(): void
     {
         $this->assertFalse($this->basicTable->hasSearchLazy());
@@ -104,7 +106,7 @@ class SearchHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasSearchLazy());
     }*/
 
-    /** @test */
+    #[Test]
     public function can_check_if_search_throttle_is_set(): void
     {
         $this->assertFalse($this->basicTable->hasSearchThrottle());
@@ -114,7 +116,7 @@ class SearchHelpersTest extends TestCase
         $this->assertSame(180, $this->basicTable->getSearchThrottle());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_has_search_placeholder(): void
     {
         $this->assertFalse($this->basicTable->hasSearchPlaceholder());

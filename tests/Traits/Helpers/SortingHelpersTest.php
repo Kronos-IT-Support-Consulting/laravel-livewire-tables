@@ -4,9 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class SortingHelpersTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_get_sorting_status(): void
     {
         $this->assertTrue($this->basicTable->sortingIsEnabled());
@@ -16,7 +18,7 @@ class SortingHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->sortingIsDisabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_single_sorting_status(): void
     {
         $this->assertTrue($this->basicTable->singleSortingIsEnabled());
@@ -26,7 +28,7 @@ class SortingHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->singleSortingIsDisabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_sorts_array(): void
     {
         $this->basicTable->setSorts(['id' => 'asc', 'name' => 'desc']);
@@ -34,7 +36,7 @@ class SortingHelpersTest extends TestCase
         $this->assertSame($this->basicTable->getSorts(), ['id' => 'asc', 'name' => 'desc']);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_sorts_array(): void
     {
         $this->basicTable->setSorts(['id' => 'asc', 'name' => 'desc']);
@@ -42,7 +44,7 @@ class SortingHelpersTest extends TestCase
         $this->assertSame($this->basicTable->getSorts(), ['id' => 'asc', 'name' => 'desc']);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_single_sort_by_field(): void
     {
         $this->basicTable->setSorts(['id' => 'asc']);
@@ -51,7 +53,7 @@ class SortingHelpersTest extends TestCase
         $this->assertNull($this->basicTable->getSort('name'));
     }
 
-    /** @test */
+    #[Test]
     public function can_set_single_sort_by_field_and_direction(): void
     {
         $this->assertEmpty($this->basicTable->getSorts());
@@ -62,7 +64,7 @@ class SortingHelpersTest extends TestCase
         $this->assertSame($this->basicTable->getSorts(), ['id' => 'asc', 'name' => 'desc']);
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_any_sorts(): void
     {
         $this->basicTable->setSorts(['id' => 'asc', 'name' => 'desc']);
@@ -74,7 +76,7 @@ class SortingHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->hasSorts());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_single_sort_by_field(): void
     {
         $this->basicTable->setSorts(['id' => 'asc']);
@@ -83,7 +85,7 @@ class SortingHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->hasSort('name'));
     }
 
-    /** @test */
+    #[Test]
     public function can_clear_sorts_array(): void
     {
         $this->basicTable->setSorts(['id' => 'asc', 'name' => 'desc']);
@@ -95,7 +97,7 @@ class SortingHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->hasSorts());
     }
 
-    /** @test */
+    #[Test]
     public function can_clear_single_sort_by_field(): void
     {
         $this->basicTable->setSorts(['id' => 'asc', 'name' => 'desc']);
@@ -107,7 +109,7 @@ class SortingHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->hasSort('id'));
     }
 
-    /** @test */
+    #[Test]
     public function can_set_sort_field_asc(): void
     {
         $this->basicTable->setSorts(['id' => 'desc']);
@@ -119,7 +121,7 @@ class SortingHelpersTest extends TestCase
         $this->assertSame($this->basicTable->getSort('id'), 'asc');
     }
 
-    /** @test */
+    #[Test]
     public function can_set_sort_field_desc(): void
     {
         $this->basicTable->setSorts(['id' => 'asc']);
@@ -131,7 +133,7 @@ class SortingHelpersTest extends TestCase
         $this->assertSame($this->basicTable->getSort('id'), 'desc');
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_sort_field_currently_asc(): void
     {
         $this->basicTable->setSorts(['id' => 'asc']);
@@ -140,7 +142,7 @@ class SortingHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->isSortDesc('id'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_sort_field_currently_desc(): void
     {
         $this->basicTable->setSorts(['id' => 'desc']);
@@ -149,7 +151,7 @@ class SortingHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->isSortAsc('id'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_default_sort_status(): void
     {
         $this->assertFalse($this->basicTable->hasDefaultSort());
@@ -159,7 +161,7 @@ class SortingHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasDefaultSort());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_sorting_pills_status(): void
     {
         $this->assertTrue($this->basicTable->sortingPillsAreEnabled());

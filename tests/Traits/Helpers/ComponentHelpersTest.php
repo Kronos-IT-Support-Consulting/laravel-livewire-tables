@@ -5,33 +5,35 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ComponentHelpersTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_see_if_component_has_model(): void
     {
         $this->assertTrue($this->basicTable->hasModel());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_component_model(): void
     {
         $this->assertSame(Pet::class, $this->basicTable->getModel());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_current_theme(): void
     {
         $this->assertEquals('tailwind', $this->basicTable->getTheme());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_empty_message(): void
     {
         $this->assertEquals('No items found. Try to broaden your search.', $this->basicTable->getEmptyMessage());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_offline_status(): void
     {
         $this->assertTrue($this->basicTable->getOfflineIndicatorStatus());
@@ -45,14 +47,14 @@ class ComponentHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->getOfflineIndicatorStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_default_sorting_labels(): void
     {
         $this->assertSame('A-Z', $this->basicTable->getDefaultSortingLabelAsc());
         $this->assertSame('Z-A', $this->basicTable->getDefaultSortingLabelDesc());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_query_string_status(): void
     {
         $this->assertTrue($this->basicTable->getQueryStringStatus());
@@ -66,7 +68,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->getQueryStringStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_table_name(): void
     {
         $this->assertSame('table', $this->basicTable->getTableName());
@@ -76,7 +78,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertSame('table2', $this->basicTable->getTableName());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_page_name(): void
     {
         $this->assertNull($this->basicTable->getPageName());
@@ -86,7 +88,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertSame('page2', $this->basicTable->getPageName());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_table_equals_name(): void
     {
         $this->assertTrue($this->basicTable->isTableNamed('table'));
@@ -97,7 +99,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->isTableNamed('table2'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_table_has_page_name(): void
     {
         $this->assertFalse($this->basicTable->hasPageName());
@@ -107,7 +109,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasPageName());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_eager_load_relations_status(): void
     {
         $this->assertFalse($this->basicTable->eagerLoadAllRelationsIsEnabled());
@@ -125,7 +127,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->eagerLoadAllRelationsIsDisabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_collapsing_columns_status(): void
     {
         $this->assertTrue($this->basicTable->getCollapsingColumnsStatus());
@@ -139,7 +141,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->getCollapsingColumnsStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_for_tr_url(): void
     {
         $this->assertFalse($this->basicTable->hasTableRowUrl());
@@ -151,7 +153,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasTableRowUrl());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_additional_selects(): void
     {
         $this->assertEquals([], $this->basicTable->getAdditionalSelects());
@@ -161,7 +163,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertEquals(['id', 'name'], $this->basicTable->getAdditionalSelects());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_additional_selects_nonarray(): void
     {
         $this->assertEquals([], $this->basicTable->getAdditionalSelects());
@@ -171,7 +173,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertEquals(['name'], $this->basicTable->getAdditionalSelects());
     }
 
-    /** @test */
+    #[Test]
     public function can_add_additional_selects(): void
     {
         $this->assertEquals([], $this->basicTable->getAdditionalSelects());
@@ -185,7 +187,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertEquals(['id', 'name', 'updated_at'], $this->basicTable->getAdditionalSelects());
     }
 
-    /** @test */
+    #[Test]
     public function can_add_additional_selects_nonarray(): void
     {
         $this->assertEquals([], $this->basicTable->getAdditionalSelects());
@@ -199,7 +201,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertEquals(['name', 'updated_at'], $this->basicTable->getAdditionalSelects());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_configurable_areas(): void
     {
         $this->assertEquals([
@@ -227,7 +229,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertEquals('includes.areas.toolbar-left-start', $this->basicTable->getConfigurableAreaFor('toolbar-left-start'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_configurable_area_parameters(): void
     {
         $this->basicTable->setConfigurableAreas([
@@ -243,7 +245,7 @@ class ComponentHelpersTest extends TestCase
         $this->assertEquals(['param1' => 'hello'], $this->basicTable->getParametersForConfigurableArea('toolbar-left-start'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_hide_configurable_areas_when_reordering_status(): void
     {
         $this->assertTrue($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());
@@ -269,7 +271,7 @@ class ComponentHelpersTest extends TestCase
     //     $this->assertSame($this->defaultFingerPrintingAlgo($this->basicTable::class), $this->basicTable->getDataTableFingerprint());
     // }
 
-    /** @test */
+    #[Test]
     public function can_get_query_string_alias_and_it_will_be_the_same_as_table_name_by_default(): void
     {
         $this->assertSame($this->basicTable->getTableName(), $this->basicTable->getQueryStringAlias());

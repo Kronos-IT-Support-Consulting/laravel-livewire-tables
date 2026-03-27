@@ -8,6 +8,8 @@ use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class RappasoftFrontendAssetsTest extends TestCase
 {
     /**
@@ -152,7 +154,7 @@ class RappasoftFrontendAssetsTest extends TestCase
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /** @test */
+    #[Test]
     public function styles()
     {
         $assets = app(RappasoftFrontendAssets::class);
@@ -164,7 +166,7 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableStyles);
     }
 
-    /** @test */
+    #[Test]
     public function scripts()
     {
         $assets = app(RappasoftFrontendAssets::class);
@@ -176,7 +178,7 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableScripts);
     }
 
-    /** @test */
+    #[Test]
     public function third_partystyles()
     {
         $assets = app(RappasoftFrontendAssets::class);
@@ -188,7 +190,7 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyStyles);
     }
 
-    /** @test */
+    #[Test]
     public function third_partyscripts()
     {
         $assets = app(RappasoftFrontendAssets::class);

@@ -21,7 +21,7 @@ final class SelectFilterTest extends FilterTestCase
         return $optionsArray;
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_callback(): void
     {
         $this->assertFalse(self::$filterInstance->hasFilterCallback());

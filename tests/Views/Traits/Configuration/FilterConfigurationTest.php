@@ -5,9 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Configuration;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class FilterConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function filter_config_can_be_set(): void
     {
         $filter = SelectFilter::make('Active');
@@ -23,7 +25,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertEquals('value', $filter->getConfig('key'));
     }
 
-    /** @test */
+    #[Test]
     public function filter_pill_title_can_be_set(): void
     {
         $filter = SelectFilter::make('Active');
@@ -35,7 +37,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertEquals('User Status', $filter->getFilterPillTitle());
     }
 
-    /** @test */
+    #[Test]
     public function filter_pill_values_can_be_set_for_select(): void
     {
         $filter = SelectFilter::make('Active')
@@ -64,7 +66,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertEquals('Inactive', $filter->getFilterPillValue('0'));
     }
 
-    /** @test */
+    #[Test]
     public function can_hide_filter_from_menus(): void
     {
         $filter = SelectFilter::make('Active');
@@ -76,7 +78,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertTrue($filter->isHiddenFromMenus());
     }
 
-    /** @test */
+    #[Test]
     public function can_hide_filter_from_pills(): void
     {
         $filter = SelectFilter::make('Active');
@@ -88,7 +90,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertTrue($filter->isHiddenFromPills());
     }
 
-    /** @test */
+    #[Test]
     public function can_hide_filter_from_filter_count(): void
     {
         $filter = SelectFilter::make('Active');
@@ -100,7 +102,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertTrue($filter->isHiddenFromFilterCount());
     }
 
-    /** @test */
+    #[Test]
     public function filter_is_not_reset_by_clear_button(): void
     {
         $filter = SelectFilter::make('Active');
@@ -112,7 +114,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertFalse($filter->isResetByClearButton());
     }
 
-    /** @test */
+    #[Test]
     public function can_be_hidden_from_all(): void
     {
         $filter = SelectFilter::make('Active');
@@ -130,7 +132,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertTrue($filter->isResetByClearButton());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_custom_position(): void
     {
         $filter = SelectFilter::make('Active');

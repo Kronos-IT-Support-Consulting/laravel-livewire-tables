@@ -4,9 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class BulkActionsHelpersTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_get_bulk_actions_status(): void
     {
         $this->assertTrue($this->basicTable->bulkActionsAreEnabled());
@@ -20,7 +22,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->bulkActionsAreEnabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_select_all_status(): void
     {
         $this->assertTrue($this->basicTable->selectAllIsDisabled());
@@ -34,7 +36,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->selectAllIsDisabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_hide_bulk_actions_on_empty_status(): void
     {
         $this->assertTrue($this->basicTable->hideBulkActionsWhenEmptyIsDisabled());
@@ -48,7 +50,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hideBulkActionsWhenEmptyIsDisabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_bulk_actions_array(): void
     {
         $this->assertSame([], $this->basicTable->getBulkActions());
@@ -58,7 +60,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertSame(['activate' => 'Activate'], $this->basicTable->getBulkActions());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_bulk_actions_array_direct(): void
     {
         $this->assertSame([], $this->basicTable->bulkActions());
@@ -68,7 +70,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertSame(['activate' => 'Activate'], $this->basicTable->bulkActions());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_bulk_actions_dropdown_should_bw_shown(): void
     {
         $this->basicTable->setBulkActionsDisabled();
@@ -96,7 +98,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->showBulkActionsDropdown());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_selected_bulk_items(): void
     {
         $this->assertSame([], $this->basicTable->getSelected());
@@ -106,7 +108,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertSame([1, 2, 3], $this->basicTable->getSelected());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_there_are_selected_items(): void
     {
         $this->assertFalse($this->basicTable->hasSelected());
@@ -116,7 +118,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasSelected());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_selected_count(): void
     {
         $this->assertEquals(0, $this->basicTable->getSelectedCount());
@@ -126,7 +128,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertEquals(3, $this->basicTable->getSelectedCount());
     }
 
-    /** @test */
+    #[Test]
     public function can_clear_selected(): void
     {
         $this->basicTable->setSelected([1, 2, 3]);
@@ -144,7 +146,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->selectAllIsDisabled());
     }
 
-    /** @test */
+    #[Test]
     public function select_all_disabled_when_selected_updated(): void
     {
         $this->basicTable->setSelectAllEnabled();
@@ -157,7 +159,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->selectAllIsDisabled());
     }
 
-    /** @test */
+    #[Test]
     public function update_select_all_clears_or_selects_all_depending_on_status(): void
     {
         $this->basicTable->setSelected([1, 2, 3, 4, 5]);
@@ -169,7 +171,7 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertSame([1], $this->basicTable->getSelected());
     }
 
-    /** @test */
+    #[Test]
     public function set_select_all_selects_all(): void
     {
         $this->assertSame([], $this->basicTable->getSelected());
@@ -181,49 +183,49 @@ class BulkActionsHelpersTest extends TestCase
         $this->assertSame(['1', '2', '3', '4', '5'], $this->basicTable->getSelected());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_bulk_action_confirms(): void
     {
         $this->assertSame([], $this->basicTable->getBulkActionConfirms());
     }
 
-    /** @test */
+    #[Test]
     public function can_find_if_bulk_action_has_confirm_message(): void
     {
         $this->assertFalse($this->basicTable->hasConfirmationMessage('test123'));
     }
 
-    /** @test */
+    #[Test]
     public function bulk_action_confirm_returns_default_message_if_not_set(): void
     {
         $this->assertSame($this->basicTable->getBulkActionDefaultConfirmationMessage(), $this->basicTable->getBulkActionConfirmMessage('test'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_bulk_action_default_confirmation_message(): void
     {
         $this->assertSame('Are you sure?', $this->basicTable->getBulkActionDefaultConfirmationMessage());
     }
 
-    /** @test */
+    #[Test]
     public function bulk_actions_td_attributes_returns_default_true_if_not_set(): void
     {
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsTdAttributes());
     }
 
-    /** @test */
+    #[Test]
     public function bulk_actions_td_checkbox_attributes_returns_default_true_if_not_set(): void
     {
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsTdCheckboxAttributes());
     }
 
-    /** @test */
+    #[Test]
     public function bulk_actions_th_attributes_returns_default_true_if_not_set(): void
     {
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThAttributes());
     }
 
-    /** @test */
+    #[Test]
     public function bulk_actions_th_checkbox_attributes_returns_default_true_if_not_set(): void
     {
         $this->assertSame(['default' => true], $this->basicTable->getBulkActionsThCheckboxAttributes());

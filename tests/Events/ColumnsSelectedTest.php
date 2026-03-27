@@ -5,17 +5,19 @@ namespace Rappasoft\LaravelLivewireTables\Events;
 use Illuminate\Support\Facades\Event;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ColumnsSelectedTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function test_example()
     {
         $this->assertTrue(true);
     }
 
-    /** @test */
     /* Temporary Removal - Suitable Replacement Inbound */
     /*
+    #[Test]
     public function an_event_is_emitted_when_a_column_selection_are_updated()
     {
         Event::fake([

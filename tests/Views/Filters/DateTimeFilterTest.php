@@ -14,7 +14,7 @@ final class DateTimeFilterTest extends FilterTestCase
         self::$filterInstance = DateTimeFilter::make('Active');
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_callback(): void
     {
         $this->assertFalse(self::$filterInstance->hasFilterCallback());
@@ -27,20 +27,20 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertIsCallable(self::$filterInstance->getFilterCallback());
     }
 
-    /** @test */
+    #[Test]
     public function can_not_set_date_filter_to_non_number(): void
     {
         $this->assertFalse(self::$filterInstance->validate('test'));
     }
 
-    /** @test */
+    #[Test]
     public function can_not_set_datetime_filter_to_number(): void
     {
         $this->assertFalse(self::$filterInstance->validate(123));
         $this->assertFalse(self::$filterInstance->validate('123'));
     }
 
-    /** @test */
+    #[Test]
     public function can_not_set_datetime_filter_to_invalid_date(): void
     {
         $this->assertFalse(self::$filterInstance->validate('Test'));
@@ -52,20 +52,20 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('2020-02-01T12:00', self::$filterInstance->validate('2020-02-01T12:00'));
     }
 
-    /** @test */
+    #[Test]
     public function can_not_omit_time_from_datetime_filter(): void
     {
         $this->assertFalse(self::$filterInstance->validate('2020-01-01'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_if_datetime_filter_empty(): void
     {
         $this->assertTrue(self::$filterInstance->isEmpty(''));
         $this->assertFalse(self::$filterInstance->isEmpty('2020-01-01 00:22'));
     }
 
-    /** @test */
+    #[Test]
     public function can_not_set_datetime_filter_to_invalid_date_custom_format(): void
     {
         $this->assertFalse(self::$filterInstance->validate('Test'));
@@ -77,7 +77,7 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame('2020-02-01T12:00', self::$filterInstance->validate('2020-02-01T12:00'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_configs(): void
     {
 
@@ -88,7 +88,7 @@ final class DateTimeFilterTest extends FilterTestCase
         $this->assertSame(['format' => 'Y-m-d\TH:i', 'pillFormat' => 'd M Y - H:i', 'foo' => 'bar'], self::$filterInstance->getConfigs());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_has_configs(): void
     {
         self::$filterInstance->config([]);

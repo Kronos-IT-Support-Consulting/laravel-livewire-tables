@@ -7,9 +7,11 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ComponentConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function initial_wrapper_attributes_get_set(): void
     {
         $this->assertSame(['id' => 'datatable-'.$this->basicTable->getId()], $this->basicTable->getComponentWrapperAttributes());
@@ -19,7 +21,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getComponentWrapperAttributes(), ['this' => 'that']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_table_wrapper_attributes(): void
     {
         $this->assertSame($this->basicTable->getTableWrapperAttributes(), ['default' => true]);
@@ -29,7 +31,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableWrapperAttributes(), ['this' => 'that']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_table_attributes(): void
     {
         $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'default' => true]);
@@ -39,7 +41,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'this' => 'that']);
     }
 
-    /** @test */
+    #[Test]
     public function can_override_table_default_id(): void
     {
         $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'table-'.$this->basicTable->getTableName(), 'default' => true]);
@@ -49,7 +51,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableAttributes(), ['id' => 'newTableID', 'this' => 'that']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_thead_attributes(): void
     {
         $this->assertSame($this->basicTable->getTheadAttributes(), ['default' => true]);
@@ -59,7 +61,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTheadAttributes(), ['this' => 'that']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_tbody_attributes(): void
     {
         $this->assertSame($this->basicTable->getTbodyAttributes(), ['default' => true]);
@@ -69,7 +71,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTbodyAttributes(), ['this' => 'that']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_th_attributes(): void
     {
         $this->basicTable->setThAttributes(function (Column $column) {
@@ -84,7 +86,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getThAttributes($this->basicTable->columns()[1]), ['default' => true, 'here' => 'there']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_th_sort_button_attributes(): void
     {
         $this->basicTable->setThSortButtonAttributes(function (Column $column) {
@@ -99,7 +101,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getThSortButtonAttributes($this->basicTable->columns()[1]), ['default' => true, 'here' => 'there']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_tr_attributes(): void
     {
         $this->basicTable->setTrAttributes(function (Model $row, $index) {
@@ -114,7 +116,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTrAttributes(Pet::find(2), 1), ['default' => true, 'here' => 'there']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_td_attributes(): void
     {
         $this->basicTable->setTdAttributes(function (Column $column, Model $row, $index) {
@@ -129,7 +131,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTdAttributes($this->basicTable->columns()[0], Pet::find(2), 1, 1), ['default' => false, 'this' => 'that']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_empty_message(): void
     {
         $this->basicTable->setEmptyMessage('My empty message');
@@ -137,7 +139,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertEquals('My empty message', $this->basicTable->getEmptyMessage());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_offline_indicator_status(): void
     {
         $this->assertTrue($this->basicTable->getOfflineIndicatorStatus());
@@ -159,7 +161,7 @@ class ComponentConfigurationTest extends TestCase
         $this->basicTable->setOfflineIndicatorStatus(true);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_default_sorting_labels(): void
     {
         $this->assertSame('A-Z', $this->basicTable->getDefaultSortingLabelAsc());
@@ -171,7 +173,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame('2-1', $this->basicTable->getDefaultSortingLabelDesc());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_query_string_status(): void
     {
         $this->assertTrue($this->basicTable->getQueryStringStatus());
@@ -193,7 +195,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getQueryStringStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_eager_load_relations_status(): void
     {
         $this->assertFalse($this->basicTable->getEagerLoadAllRelationsStatus());
@@ -215,7 +217,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getEagerLoadAllRelationsStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_collapsing_columns_status(): void
     {
         $this->assertTrue($this->basicTable->getCollapsingColumnsStatus());
@@ -237,7 +239,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getCollapsingColumnsStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_tr_url(): void
     {
         $this->assertNull($this->basicTable->getTableRowUrl(1));
@@ -249,7 +251,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableRowUrl(1), 'https://example.com');
     }
 
-    /** @test */
+    #[Test]
     public function can_set_tr_url_advanced(): void
     {
         $this->assertNull($this->basicTable->getTableRowUrl(1));
@@ -269,7 +271,7 @@ class ComponentConfigurationTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function can_set_tr_url_target(): void
     {
         $this->assertNull($this->basicTable->getTableRowUrlTarget(1));
@@ -282,7 +284,7 @@ class ComponentConfigurationTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function can_set_tr_url_target_advanced(): void
     {
         $this->assertNull($this->basicTable->getTableRowUrl(1));
@@ -300,7 +302,7 @@ class ComponentConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getTableRowUrlTarget(2), 'navigate');
     }
 
-    /** @test */
+    #[Test]
     public function can_set_hide_configurable_areas_when_reordering_status(): void
     {
         $this->assertTrue($this->basicTable->getHideConfigurableAreasWhenReorderingStatus());

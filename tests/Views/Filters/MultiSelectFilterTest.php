@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class MultiSelectFilterTest extends TestCase
 {
     public array $optionsArray = [];
@@ -18,7 +20,7 @@ class MultiSelectFilterTest extends TestCase
         return $optionsArray;
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_name(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -26,7 +28,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertSame('Active', $filter->getName());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_key(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -34,7 +36,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertSame('active', $filter->getKey());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_configs(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -46,7 +48,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertSame(['foo' => 'bar'], $filter->getConfigs());
     }
 
-    /** @test */
+    #[Test]
     public function get_a_single_filter_config(): void
     {
         $filter = MultiSelectFilter::make('Active')
@@ -55,7 +57,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertSame('bar', $filter->getConfig('foo'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_default_value(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -63,7 +65,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertSame([], $filter->getDefaultValue());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_callback(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -79,7 +81,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertIsCallable($filter->getFilterCallback());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_pill_title(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -92,7 +94,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertSame('User Status', $filter->getFilterPillTitle());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_has_configs(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -105,7 +107,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertTrue($filter->hasConfigs());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_filter_config_by_name(): void
     {
         $filter = MultiSelectFilter::make('Active')
@@ -115,7 +117,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertFalse($filter->hasConfig('bar'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_menus(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -129,7 +131,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInMenus());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_pills(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -143,7 +145,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInPills());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_count(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -157,7 +159,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInFilterCount());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_reset_by_clear_button(): void
     {
         $filter = MultiSelectFilter::make('Active');
@@ -194,7 +196,7 @@ class MultiSelectFilterTest extends TestCase
         $this->assertSame(['1', '3'], $filter->validate([0 => '1', 1 => '3', 2 => '99']));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_if_filter_empty(): void
     {
         $filter = MultiSelectFilter::make('Active');

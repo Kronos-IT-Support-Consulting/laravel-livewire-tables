@@ -4,9 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ColumnSelectHelpersTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_get_column_select_status(): void
     {
         $this->assertTrue($this->basicTable->columnSelectIsEnabled());
@@ -20,7 +22,7 @@ class ColumnSelectHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->columnSelectIsEnabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_remember_column_selection_status(): void
     {
         $this->assertTrue($this->basicTable->rememberColumnSelectionIsEnabled());
@@ -34,7 +36,7 @@ class ColumnSelectHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->rememberColumnSelectionIsEnabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_column_select_hidden_on_mobile_status(): void
     {
         $this->assertFalse($this->basicTable->getColumnSelectIsHiddenOnMobile());
@@ -48,7 +50,7 @@ class ColumnSelectHelpersTest extends TestCase
         $this->assertFalse($this->basicTable->getColumnSelectIsHiddenOnTablet());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_column_select_hidden_on_tablet_status(): void
     {
         $this->assertFalse($this->basicTable->getColumnSelectIsHiddenOnMobile());

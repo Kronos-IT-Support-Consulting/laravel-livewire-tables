@@ -5,9 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class DateRangeFilterTest extends FilterTestCase
 {
-    /** @test */
+    #[Test]
     public function can_get_filter_name(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -15,7 +17,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame('Active', $filter->getName());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_key(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -23,7 +25,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame('active', $filter->getKey());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_configs(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -44,7 +46,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame(array_merge($defaultConfig, ['foo' => 'bar']), $filter->getConfigs());
     }
 
-    /** @test */
+    #[Test]
     public function get_a_single_filter_config(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -72,7 +74,7 @@ class DateRangeFilterTest extends FilterTestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_options(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -83,7 +85,7 @@ class DateRangeFilterTest extends FilterTestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function can_get_if_empty(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -98,14 +100,14 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertTrue($filter->isEmpty('test'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_accepts_valid_values_array(): void
     {
         $filter = DateRangeFilter::make('Active');
         $this->assertSame(['minDate' => '2020-01-01', 'maxDate' => '2020-02-02'], $filter->validate(['2020-01-01', '2020-02-02']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_accepts_valid_values_string(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -114,7 +116,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->validate(' to 2020-01-01'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_invalid_values(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -128,21 +130,21 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->validate(['minDate' => '2020-02-22', 'maxDate' => '2020-02-21']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_invalid_earliest_latest_values(): void
     {
         $filter = DateRangeFilter::make('Active')->options(['earliestDate' => '20214-0111-01']);
         $this->assertFalse($filter->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-02-30']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_invalid_latest_latest_values(): void
     {
         $filter = DateRangeFilter::make('Active')->config(['latestDate' => '2191-111-11']);
         $this->assertFalse($filter->validate(['minDate' => '2020-02-21', 'maxDate' => '2020-02-30']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_values_before_earliest_or_after_latest_with_dateformat(): void
     {
         $filter = DateRangeFilter::make('Active')->config(['dateFormat' => 'Y-m-d', 'earliestDate' => '2020-01-01', 'latestDate' => '2020-10-10']);
@@ -156,7 +158,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_values_before_earliest_or_after_latest_default_dateformat(): void
     {
         $filter = DateRangeFilter::make('Active')->config(['earliestDate' => '2020-01-01', 'latestDate' => '2020-10-10']);
@@ -171,7 +173,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->validate(['minDate' => '2021-01-05', 'maxDate' => '2021-02-02']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_validation_rejects_values_2_dateformat(): void
     {
         $filter = DateRangeFilter::make('Active')->config(['earliestDate' => '2020-01-01', 'latestDate' => '2020-10-10']);
@@ -179,7 +181,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->validate(['minDate' => '2020-01-05', 'maxDate' => '2020-02-30']));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_date_format_can_be_changed(): void
     {
         $filter = DateRangeFilter::make('Active')->config(['dateFormat' => 'd-m-Y', 'earliestDate' => '01-01-2020', 'latestDate' => '12-10-2020']);
@@ -188,7 +190,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->validate(['minDate' => '10-12-2020', 'maxDate' => '12-12-2020']));
     }
 
-    /** @test */
+    #[Test]
     public function filter_pill_values_can_be_set_for_daterange(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -198,7 +200,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertEquals('February 2, 2010 to February 5, 2020', $filter->getFilterPillValue(['minDate' => '2010-02-02', 'maxDate' => '2020-02-05']));
     }
 
-    /** @test */
+    #[Test]
     public function filter_pill_values_cannot_be_set_for_invalid_dates(): void
     {
         $filter = DateRangeFilter::make('Active')->options(['dateFormat' => 'd-m-Y', 'earliestDate' => '01-01-2020', 'latestDate' => '1d-10-2020']);
@@ -208,7 +210,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertEquals('February 2, 2010 to February 5, 2020', $filter->getFilterPillValue(['minDate' => '2010-02-02', 'maxDate' => '2020-02-05']));
     }
 
-    /** @test */
+    #[Test]
     public function filter_pill_values_can_be_set_for_daterange_limits(): void
     {
         $filter = DateRangeFilter::make('Active')->options(['ariaDateFormat' => 'F j, Y', 'earliestDate' => '2020-01-01', 'latestDate' => '2022-01-01']);
@@ -217,7 +219,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertEquals('February 2, 2010 to February 5, 2020', $filter->getFilterPillValue(['minDate' => '2010-02-02', 'maxDate' => '2020-02-05']));
     }
 
-    /** @test */
+    #[Test]
     public function filter_pill_values_can_be_set_for_daterange_customformat(): void
     {
         $filter = DateRangeFilter::make('Active')->config(['ariaDateFormat' => 'Y', 'latestDate' => '2022-01-01']);
@@ -226,7 +228,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertEquals('', $filter->getFilterPillValue(['minDate' => '20220-02-02', 'maxDate' => '2020-02-05']));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_keys(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -234,7 +236,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame(['minDate' => '', 'maxDate' => ''], $filter->getKeys());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_default_value(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -242,7 +244,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame([], $filter->getDefaultValue());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_callback(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -259,7 +261,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertIsCallable($filter->getFilterCallback());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_pill_title(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -272,7 +274,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame('User Status', $filter->getFilterPillTitle());
     }
 
-    /** @test */
+    // #[Test]
     /*
     public function can_get_filter_pill_value(): void
     {
@@ -288,7 +290,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame('baz', $filter->getFilterPillValue('foo'));
     }*/
 
-    /** @test */
+    // #[Test]
     /*
     public function can_get_nested_filter_pill_value(): void
     {
@@ -304,7 +306,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertSame('etc', $filter->getFilterPillValue('bar'));
     }*/
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_has_configs(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -317,7 +319,7 @@ class DateRangeFilterTest extends FilterTestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function can_check_filter_config_by_name(): void
     {
         $filter = DateRangeFilter::make('Active')
@@ -327,7 +329,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->hasConfig('bar'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_menus(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -341,7 +343,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->isVisibleInMenus());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_pills(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -355,7 +357,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->isVisibleInPills());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_count(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -369,7 +371,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->isVisibleInFilterCount());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_reset_by_clear_button(): void
     {
         $filter = DateRangeFilter::make('Active');
@@ -381,7 +383,7 @@ class DateRangeFilterTest extends FilterTestCase
         $this->assertFalse($filter->isResetByClearButton());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_datestring(): void
     {
         $filter = DateRangeFilter::make('Active');

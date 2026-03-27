@@ -5,22 +5,24 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 use Livewire\Exceptions\PropertyNotFoundException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class ColumnSelectConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function variables_are_correct_types(): void
     {
         $this->assertIsArray($this->basicTable->selectedColumns);
     }
 
-    /** @test */
+    #[Test]
     public function check_protected_fields_column_select_status(): void
     {
         $this->expectException(PropertyNotFoundException::class);
         $this->assertIsBool($this->basicTable->columnSelectStatus);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_column_select_status(): void
     {
         $this->assertTrue($this->basicTable->getColumnSelectStatus());
@@ -42,7 +44,7 @@ class ColumnSelectConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getColumnSelectStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_remember_column_selection_status(): void
     {
         $this->assertTrue($this->basicTable->getRememberColumnSelectionStatus());

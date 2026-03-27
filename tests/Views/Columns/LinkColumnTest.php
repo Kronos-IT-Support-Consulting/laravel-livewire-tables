@@ -7,9 +7,11 @@ use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
 
+use PHPUnit\Framework\Attributes\Test;
+
 class LinkColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_set_the_column_title(): void
     {
         $column = LinkColumn::make('Name', 'name');
@@ -17,7 +19,7 @@ class LinkColumnTest extends TestCase
         $this->assertSame('Name', $column->getTitle());
     }
 
-    /** @test */
+    #[Test]
     public function can_not_infer_field_name_from_title_if_no_from(): void
     {
         $column = LinkColumn::make('My Title');
@@ -25,7 +27,7 @@ class LinkColumnTest extends TestCase
         $this->assertNull($column->getField());
     }
 
-    /** @test */
+    #[Test]
     public function can_not_render_field_if_no_title_callback(): void
     {
         $this->expectException(DataTableConfigurationException::class);
@@ -33,7 +35,7 @@ class LinkColumnTest extends TestCase
         LinkColumn::make('Name')->getContents(Pet::find(1));
     }
 
-    /** @test */
+    #[Test]
     public function can_not_render_field_if_no_location_callback(): void
     {
         $this->expectException(DataTableConfigurationException::class);
@@ -41,7 +43,7 @@ class LinkColumnTest extends TestCase
         LinkColumn::make('Name')->title(fn ($row) => 'Edit')->getContents(Pet::find(1));
     }
 
-    /** @test */
+    #[Test]
     public function can_render_field_if_title_and_location_callback(): void
     {
         $column = LinkColumn::make('Name')->title(fn ($row) => 'Edit')->location(fn ($row) => 'test'.$row->id)->getContents(Pet::find(1));
