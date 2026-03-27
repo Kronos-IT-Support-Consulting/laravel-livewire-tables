@@ -2,11 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class BooleanColumnTest extends TestCase
 {

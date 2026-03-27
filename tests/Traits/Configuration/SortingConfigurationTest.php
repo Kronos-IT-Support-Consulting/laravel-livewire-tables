@@ -2,9 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-
 use PHPUnit\Framework\Attributes\Test;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class SortingConfigurationTest extends TestCase
 {

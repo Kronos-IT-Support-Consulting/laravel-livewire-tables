@@ -2,10 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class FilterConfigurationTest extends TestCase
 {

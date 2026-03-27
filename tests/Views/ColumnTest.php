@@ -3,11 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views;
 
 use Illuminate\Support\HtmlString;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class ColumnTest extends TestCase
 {

@@ -2,10 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableMount;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class WithMountTest extends TestCase
 {

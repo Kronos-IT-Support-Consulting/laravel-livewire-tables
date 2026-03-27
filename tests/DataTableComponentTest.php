@@ -4,12 +4,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests;
 
 use Illuminate\View\ViewException;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoColumnsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class DataTableComponentTest extends TestCase
 {

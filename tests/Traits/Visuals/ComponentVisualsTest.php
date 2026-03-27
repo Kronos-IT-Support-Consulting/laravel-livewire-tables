@@ -5,12 +5,11 @@ namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 use Exception;
 use Illuminate\View\ViewException;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\{BrokenSecondaryHeaderTable, NoBuildMethodTable, NoPrimaryKeyTable};
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable,PetsTableAttributes};
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class ComponentVisualsTest extends TestCase
 {

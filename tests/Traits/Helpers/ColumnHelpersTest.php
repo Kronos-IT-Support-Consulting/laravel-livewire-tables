@@ -3,12 +3,11 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
 use Illuminate\Support\Str;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filters\TextFilter;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class ColumnHelpersTest extends TestCase
 {

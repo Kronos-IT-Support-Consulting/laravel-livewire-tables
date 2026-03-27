@@ -2,10 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class SearchConfigurationTest extends TestCase
 {

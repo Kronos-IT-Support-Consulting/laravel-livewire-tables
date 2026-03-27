@@ -2,11 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class ColumnConfigurationTest extends TestCase
 {
