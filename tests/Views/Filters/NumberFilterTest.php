@@ -3,12 +3,13 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Filters\NumberFilter;
 
 class NumberFilterTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_get_filter_name(): void
     {
         $filter = NumberFilter::make('Active');
@@ -16,7 +17,7 @@ class NumberFilterTest extends TestCase
         $this->assertSame('Active', $filter->getName());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_key(): void
     {
         $filter = NumberFilter::make('Active');
@@ -24,7 +25,7 @@ class NumberFilterTest extends TestCase
         $this->assertSame('active', $filter->getKey());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_configs(): void
     {
         $filter = NumberFilter::make('Active');
@@ -36,7 +37,7 @@ class NumberFilterTest extends TestCase
         $this->assertSame(['foo' => 'bar'], $filter->getConfigs());
     }
 
-    /** @test */
+    #[Test]
     public function get_a_single_filter_config(): void
     {
         $filter = NumberFilter::make('Active')
@@ -45,7 +46,7 @@ class NumberFilterTest extends TestCase
         $this->assertSame('bar', $filter->getConfig('foo'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_default_value(): void
     {
         $filter = NumberFilter::make('Active');
@@ -53,7 +54,7 @@ class NumberFilterTest extends TestCase
         $this->assertNull($filter->getDefaultValue());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_callback(): void
     {
         $filter = NumberFilter::make('Active');
@@ -69,7 +70,7 @@ class NumberFilterTest extends TestCase
         $this->assertIsCallable($filter->getFilterCallback());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_filter_pill_title(): void
     {
         $filter = NumberFilter::make('Active');
@@ -82,7 +83,7 @@ class NumberFilterTest extends TestCase
         $this->assertSame('User Status', $filter->getFilterPillTitle());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_has_configs(): void
     {
         $filter = NumberFilter::make('Active');
@@ -95,7 +96,7 @@ class NumberFilterTest extends TestCase
         $this->assertTrue($filter->hasConfigs());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_filter_config_by_name(): void
     {
         $filter = NumberFilter::make('Active')
@@ -105,7 +106,7 @@ class NumberFilterTest extends TestCase
         $this->assertFalse($filter->hasConfig('bar'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_menus(): void
     {
         $filter = NumberFilter::make('Active');
@@ -119,7 +120,7 @@ class NumberFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInMenus());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_pills(): void
     {
         $filter = NumberFilter::make('Active');
@@ -133,7 +134,7 @@ class NumberFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInPills());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_hidden_from_count(): void
     {
         $filter = NumberFilter::make('Active');
@@ -147,7 +148,7 @@ class NumberFilterTest extends TestCase
         $this->assertFalse($filter->isVisibleInFilterCount());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_filter_is_reset_by_clear_button(): void
     {
         $filter = NumberFilter::make('Active');
@@ -159,7 +160,7 @@ class NumberFilterTest extends TestCase
         $this->assertFalse($filter->isResetByClearButton());
     }
 
-    /** @test */
+    #[Test]
     public function can_not_set_number_filter_to_non_number(): void
     {
         $filter = NumberFilter::make('BreedID');
@@ -167,7 +168,7 @@ class NumberFilterTest extends TestCase
         $this->assertFalse($filter->validate(['test']));
     }
 
-    /** @test */
+    #[Test]
     public function can_set_number_filter_to_number(): void
     {
         $filter = NumberFilter::make('BreedID');
@@ -175,7 +176,7 @@ class NumberFilterTest extends TestCase
         $this->assertSame(123, $filter->validate('123'));
     }
 
-    /** @test */
+    #[Test]
     public function can_get_if_number_filter_empty(): void
     {
         $filter = NumberFilter::make('Active');
@@ -183,9 +184,7 @@ class NumberFilterTest extends TestCase
         $this->assertFalse($filter->isEmpty('123'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function test_can_check_if_can_set_default_value(): void
     {
         $filter = NumberFilter::make('Active');
@@ -197,9 +196,7 @@ class NumberFilterTest extends TestCase
         $this->assertSame('123', $filter->getFilterDefaultValue());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function can_set_custom_filter_view(): void
     {
         $filter = NumberFilter::make('Active');

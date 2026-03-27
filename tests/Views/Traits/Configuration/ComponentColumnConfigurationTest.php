@@ -3,12 +3,13 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Configuration;
 
 use Closure;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
 class ComponentColumnConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function component_column_can_set_slot_callback(): void
     {
         $column = ComponentColumn::make('Name');
@@ -22,7 +23,7 @@ class ComponentColumnConfigurationTest extends TestCase
         $this->assertTrue($column->getSlotCallback() instanceof Closure);
     }
 
-    /** @test */
+    #[Test]
     public function component_column_can_set_attributes_callback(): void
     {
         $column = ComponentColumn::make('Name');

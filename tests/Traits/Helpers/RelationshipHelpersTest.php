@@ -2,12 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class RelationshipHelpersTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_check_if_base_column(): void
     {
         $column = Column::make('ID');
@@ -19,7 +20,7 @@ class RelationshipHelpersTest extends TestCase
         $this->assertFalse($column->isBaseColumn());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_if_column_has_relations(): void
     {
         $column = Column::make('ID');
@@ -31,7 +32,7 @@ class RelationshipHelpersTest extends TestCase
         $this->assertTrue($column->hasRelations());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_column_relations(): void
     {
         $column = Column::make('ID');
@@ -43,7 +44,7 @@ class RelationshipHelpersTest extends TestCase
         $this->assertSame(['pets', 'species'], $column->getRelations()->toArray());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_column_relation_string(): void
     {
         $column = Column::make('ID', 'pets.species.id');

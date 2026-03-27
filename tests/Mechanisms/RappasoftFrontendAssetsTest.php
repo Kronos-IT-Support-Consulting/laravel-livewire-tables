@@ -2,66 +2,63 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Mechanisms;
 
+use Carbon\Carbon;
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class RappasoftFrontendAssetsTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function jsResponseSetupCacheEnabled(): array
+    #[Test]
+    public function js_response_setup_cache_enabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
-        $lastModified = \Carbon\Carbon::now()->timestamp;
+        $lastModified = Carbon::now()->timestamp;
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableJavaScriptAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => $lastModified, 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function jsResponseSetupCacheDisabled(): array
+    #[Test]
+    public function js_response_setup_cache_disabled(): array
     {
         config()->set('livewire-tables.cache_assets', false);
         $date = date_create();
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableJavaScriptAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function cssResponseSetupCacheEnabled(): array
+    #[Test]
+    public function css_response_setup_cache_enabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
         $date = date_create();
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableStylesAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function cssResponseSetupCacheDisabled(): array
+    #[Test]
+    public function css_response_setup_cache_disabled(): array
     {
         config()->set('livewire-tables.cache_assets', false);
 
@@ -70,17 +67,15 @@ class RappasoftFrontendAssetsTest extends TestCase
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableStylesAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function thirdPartyCssResponseSetupCacheEnabled(): array
+    #[Test]
+    public function third_party_css_response_setup_cache_enabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
 
@@ -89,17 +84,15 @@ class RappasoftFrontendAssetsTest extends TestCase
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableThirdPartyStylesAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function thirdPartyCssResponseSetupCacheDisabled(): array
+    #[Test]
+    public function third_party_css_response_setup_cache_disabled(): array
     {
         config()->set('livewire-tables.cache_assets', false);
 
@@ -108,48 +101,44 @@ class RappasoftFrontendAssetsTest extends TestCase
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableThirdPartyStylesAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function thirdPartyJsResponseSetupCacheEnabled(): array
+    #[Test]
+    public function third_party_js_response_setup_cache_enabled(): array
     {
         config()->set('livewire-tables.cache_assets', true);
-        $lastModified = \Carbon\Carbon::now()->timestamp;
+        $lastModified = Carbon::now()->timestamp;
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableThirdPartyJavaScriptAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => $lastModified, 'responseHeaders' => $response->headers->all()];
     }
 
-    /**
-     * @test
-     */
-    public function thirdPartyJsResponseSetupCacheDisabled(): array
+    #[Test]
+    public function third_party_js_response_setup_cache_disabled(): array
     {
         config()->set('livewire-tables.cache_assets', false);
         $date = date_create();
         $assets = app(RappasoftFrontendAssets::class);
         $response = $assets->returnRappasoftTableThirdPartyJavaScriptAsFile();
         $this->assertIsObject($response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\BinaryFileResponse::class, $response);
-        $this->assertInstanceOf(\Symfony\Component\HttpFoundation\ResponseHeaderBag::class, $response->headers);
+        $this->assertInstanceOf(BinaryFileResponse::class, $response);
+        $this->assertInstanceOf(ResponseHeaderBag::class, $response->headers);
         $this->assertIsIterable($response->headers->all());
 
         return ['lastModified' => date_timestamp_get($date), 'responseHeaders' => $response->headers->all()];
     }
 
-    /** @test */
+    #[Test]
     public function styles()
     {
         $assets = app(RappasoftFrontendAssets::class);
@@ -161,7 +150,7 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableStyles);
     }
 
-    /** @test */
+    #[Test]
     public function scripts()
     {
         $assets = app(RappasoftFrontendAssets::class);
@@ -173,8 +162,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableScripts);
     }
 
-    /** @test */
-    public function thirdPartystyles()
+    #[Test]
+    public function third_partystyles()
     {
         $assets = app(RappasoftFrontendAssets::class);
 
@@ -185,8 +174,8 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyStyles);
     }
 
-    /** @test */
-    public function thirdPartyscripts()
+    #[Test]
+    public function third_partyscripts()
     {
         $assets = app(RappasoftFrontendAssets::class);
 
@@ -197,161 +186,113 @@ class RappasoftFrontendAssetsTest extends TestCase
         $this->assertTrue($assets->hasRenderedRappsoftTableThirdPartyScripts);
     }
 
-    /**
-     * @test
-     *
-     * @depends jsResponseSetupCacheEnabled
-     */
+    #[Test]
+    #[Depends('js_response_setup_cache_enabled')]
     public function check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $jsResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $jsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends jsResponseSetupCacheEnabled
-     */
+    #[Test]
+    #[Depends('js_response_setup_cache_enabled')]
     public function check_pretend_response_is_js_returns_correct_content_type_cache_enabled(array $jsResponseSetupCacheEnabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $jsResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends jsResponseSetupCacheDisabled
-     */
+    #[Test]
+    #[Depends('js_response_setup_cache_disabled')]
     public function check_pretend_response_is_js_returns_correct_cache_control_cache_disabled(array $jsResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $jsResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends jsResponseSetupCacheDisabled
-     */
+    #[Test]
+    #[Depends('js_response_setup_cache_disabled')]
     public function check_pretend_response_is_js_returns_correct_content_type_cache_disabled(array $jsResponseSetupCacheDisabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $jsResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends cssResponseSetupCacheEnabled
-     */
+    #[Test]
+    #[Depends('css_response_setup_cache_enabled')]
     public function check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $cssResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $cssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends cssResponseSetupCacheEnabled
-     */
+    #[Test]
+    #[Depends('css_response_setup_cache_enabled')]
     public function check_pretend_response_is_css_returns_correct_content_type_caching_enabled(array $cssResponseSetupCacheEnabled)
     {
         $this->assertSame('text/css; charset=utf-8', $cssResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends cssResponseSetupCacheDisabled
-     */
+    #[Test]
+    #[Depends('css_response_setup_cache_disabled')]
     public function check_pretend_response_is_css_returns_correct_cache_control_caching_disabled(array $cssResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $cssResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends cssResponseSetupCacheDisabled
-     */
+    #[Test]
+    #[Depends('css_response_setup_cache_disabled')]
     public function check_pretend_response_is_css_returns_correct_content_type_caching_disabled(array $cssResponseSetupCacheDisabled)
     {
         $this->assertSame('text/css; charset=utf-8', $cssResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyCssResponseSetupCacheEnabled
-     */
+    #[Test]
+    #[Depends('third_party_css_response_setup_cache_enabled')]
     public function tp_check_pretend_response_is_css_returns_correct_cache_control_caching_enabled(array $thirdPartyCssResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $thirdPartyCssResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyCssResponseSetupCacheEnabled
-     */
+    #[Test]
+    #[Depends('third_party_css_response_setup_cache_enabled')]
     public function tp_check_pretend_response_is_css_returns_correct_content_type_caching_enabled(array $thirdPartyCssResponseSetupCacheEnabled)
     {
         $this->assertSame('text/css; charset=utf-8', $thirdPartyCssResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyCssResponseSetupCacheDisabled
-     */
+    #[Test]
+    #[Depends('third_party_css_response_setup_cache_disabled')]
     public function tp_check_pretend_response_is_css_returns_correct_cache_control_caching_disabled(array $thirdPartyCssResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $thirdPartyCssResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyCssResponseSetupCacheDisabled
-     */
+    #[Test]
+    #[Depends('third_party_css_response_setup_cache_disabled')]
     public function tp_check_pretend_response_is_css_returns_correct_content_type_caching_disabled(array $thirdPartyCssResponseSetupCacheDisabled)
     {
         $this->assertSame('text/css; charset=utf-8', $thirdPartyCssResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyJsResponseSetupCacheEnabled
-     */
+    #[Test]
+    #[Depends('third_party_js_response_setup_cache_enabled')]
     public function tp_check_pretend_response_is_js_returns_correct_cache_control_cache_enabled(array $thirdPartyJsResponseSetupCacheEnabled)
     {
         $this->assertSame('max-age=86400, public', $thirdPartyJsResponseSetupCacheEnabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyJsResponseSetupCacheEnabled
-     */
+    #[Test]
+    #[Depends('third_party_js_response_setup_cache_enabled')]
     public function tp_check_pretend_response_is_js_returns_correct_content_type_cache_enabled(array $thirdPartyJsResponseSetupCacheEnabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $thirdPartyJsResponseSetupCacheEnabled['responseHeaders']['content-type'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyJsResponseSetupCacheDisabled
-     */
+    #[Test]
+    #[Depends('third_party_js_response_setup_cache_disabled')]
     public function tp_check_pretend_response_is_js_returns_correct_cache_control_cache_disabled(array $thirdPartyJsResponseSetupCacheDisabled)
     {
         $this->assertSame('max-age=1, public', $thirdPartyJsResponseSetupCacheDisabled['responseHeaders']['cache-control'][0]);
     }
 
-    /**
-     * @test
-     *
-     * @depends thirdPartyJsResponseSetupCacheDisabled
-     */
+    #[Test]
+    #[Depends('third_party_js_response_setup_cache_disabled')]
     public function tp_check_pretend_response_is_js_returns_correct_content_type_cache_disabled(array $thirdPartyJsResponseSetupCacheDisabled)
     {
         $this->assertSame('application/javascript; charset=utf-8', $thirdPartyJsResponseSetupCacheDisabled['responseHeaders']['content-type'][0]);

@@ -2,11 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class RefreshConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function refresh_time_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getRefreshStatus());
@@ -16,7 +17,7 @@ class RefreshConfigurationTest extends TestCase
         $this->assertSame('5000', $this->basicTable->getRefreshStatus());
     }
 
-    /** @test */
+    #[Test]
     public function refresh_keep_alive_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getRefreshStatus());
@@ -26,7 +27,7 @@ class RefreshConfigurationTest extends TestCase
         $this->assertSame('keep-alive', $this->basicTable->getRefreshStatus());
     }
 
-    /** @test */
+    #[Test]
     public function refresh_visible_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getRefreshStatus());
@@ -36,7 +37,7 @@ class RefreshConfigurationTest extends TestCase
         $this->assertSame('visible', $this->basicTable->getRefreshStatus());
     }
 
-    /** @test */
+    #[Test]
     public function refresh_method_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->getRefreshStatus());

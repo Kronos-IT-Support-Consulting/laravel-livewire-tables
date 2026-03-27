@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Illuminate\View\View;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\CustomisationsConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\CustomisationsHelpers;
 
@@ -29,7 +30,7 @@ trait WithCustomisations
     /**
      * Add customView to the View
      */
-    public function renderingWithCustomisations(\Illuminate\View\View $view, array $data = []): void
+    public function renderingWithCustomisations(View $view, array $data = []): void
     {
         if ($this->hasLayout()) {
             $view->layout($this->getLayout());

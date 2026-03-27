@@ -2,24 +2,26 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
+use Livewire\Exceptions\PropertyNotFoundException;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ColumnSelectConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function variables_are_correct_types(): void
     {
         $this->assertIsArray($this->basicTable->selectedColumns);
     }
 
-    /** @test */
-    public function check_protected_fields_columnSelectStatus(): void
+    #[Test]
+    public function check_protected_fields_column_select_status(): void
     {
-        $this->expectException(\Livewire\Exceptions\PropertyNotFoundException::class);
+        $this->expectException(PropertyNotFoundException::class);
         $this->assertIsBool($this->basicTable->columnSelectStatus);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_column_select_status(): void
     {
         $this->assertTrue($this->basicTable->getColumnSelectStatus());
@@ -41,7 +43,7 @@ class ColumnSelectConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getColumnSelectStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_remember_column_selection_status(): void
     {
         $this->assertTrue($this->basicTable->getRememberColumnSelectionStatus());
@@ -63,7 +65,7 @@ class ColumnSelectConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getRememberColumnSelectionStatus());
     }
 
-    /** @test  */
+    #[Test]
     public function can_deselect_all_columns(): void
     {
         $this->assertTrue($this->basicTable->getColumnSelectStatus());
@@ -73,7 +75,7 @@ class ColumnSelectConfigurationTest extends TestCase
         $this->assertSame([], $this->basicTable->selectedColumns);
     }
 
-    /** @test  */
+    #[Test]
     public function can_exclude_deselected_columns_from_query_enabled(): void
     {
         $this->basicTable->setExcludeDeselectedColumnsFromQueryEnabled();
@@ -90,7 +92,7 @@ class ColumnSelectConfigurationTest extends TestCase
 
     }
 
-    /** @test  */
+    #[Test]
     public function can_check_all_columns_get_selected(): void
     {
         $this->basicTable->deselectAllColumns();

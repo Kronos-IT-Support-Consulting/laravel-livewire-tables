@@ -2,11 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class CustomisationsConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_set_extends(): void
     {
         $this->assertFalse($this->basicTable->hasExtends());
@@ -16,7 +17,7 @@ class CustomisationsConfigurationTest extends TestCase
         $this->assertEquals('app.layout', $this->basicTable->getExtends());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_layout(): void
     {
         $this->assertFalse($this->basicTable->hasLayout());
@@ -26,7 +27,7 @@ class CustomisationsConfigurationTest extends TestCase
         $this->assertEquals('app.layout', $this->basicTable->getLayout());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_section(): void
     {
         $this->assertNull($this->basicTable->getSection());
@@ -36,7 +37,7 @@ class CustomisationsConfigurationTest extends TestCase
         $this->assertEquals('content', $this->basicTable->getSection());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_slot(): void
     {
         $this->assertFalse($this->basicTable->hasSlot());

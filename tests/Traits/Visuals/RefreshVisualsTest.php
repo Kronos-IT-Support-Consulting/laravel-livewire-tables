@@ -3,19 +3,20 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class RefreshVisualsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function refresh_shows_no_poll_by_default(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSee('wire:poll');
     }
 
-    /** @test */
+    #[Test]
     public function refresh_shows_poll_in_milliseconds(): void
     {
         Livewire::test(PetsTable::class)
@@ -23,7 +24,7 @@ class RefreshVisualsTest extends TestCase
             ->assertSeeHtml('wire:poll.1000ms');
     }
 
-    /** @test */
+    #[Test]
     public function refresh_shows_poll_keep_alive(): void
     {
         Livewire::test(PetsTable::class)
@@ -31,7 +32,7 @@ class RefreshVisualsTest extends TestCase
             ->assertSeeHtml('wire:poll.keep-alive');
     }
 
-    /** @test */
+    #[Test]
     public function refresh_shows_poll_visible(): void
     {
         Livewire::test(PetsTable::class)
@@ -39,7 +40,7 @@ class RefreshVisualsTest extends TestCase
             ->assertSeeHtml('wire:poll.visible');
     }
 
-    /** @test */
+    #[Test]
     public function refresh_shows_poll_method(): void
     {
         Livewire::test(PetsTable::class)

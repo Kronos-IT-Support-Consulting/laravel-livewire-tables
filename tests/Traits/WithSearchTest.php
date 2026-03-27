@@ -2,25 +2,26 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class WithSearchTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function search_gets_applied_for_searchable_columns(): void
     {
         // TODO
         $this->assertTrue(true);
     }
 
-    /** @test */
+    #[Test]
     public function search_callback_gets_applied_where_necessary(): void
     {
         // TODO
         $this->assertTrue(true);
     }
 
-    /** @test */
+    #[Test]
     public function when_search_is_applied_bulk_actions_are_cleared(): void
     {
         $this->assertTrue(true);

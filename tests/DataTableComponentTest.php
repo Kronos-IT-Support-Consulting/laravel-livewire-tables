@@ -2,14 +2,17 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
+use Illuminate\View\ViewException;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
+use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoColumnsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 
 class DataTableComponentTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function primary_key_can_be_set(): void
     {
         $this->assertSame('id', $this->basicTable->getPrimaryKey());
@@ -19,7 +22,7 @@ class DataTableComponentTest extends TestCase
         $this->assertSame('name', $this->basicTable->getPrimaryKey());
     }
 
-    /** @test */
+    #[Test]
     public function primary_key_can_be_checked_for_existence(): void
     {
         $this->assertTrue($this->basicTable->hasPrimaryKey());
@@ -29,15 +32,15 @@ class DataTableComponentTest extends TestCase
         $this->assertFalse($this->basicTable->hasPrimaryKey());
     }
 
-    /** @test */
+    #[Test]
     public function primary_key_has_to_be_set(): void
     {
-        $this->expectException(\Illuminate\View\ViewException::class);
+        $this->expectException(ViewException::class);
         Livewire::test(NoPrimaryKeyTable::class)
             ->call('setSearch', 'abcd');
     }
 
-    /** @test */
+    #[Test]
     public function default_fingerprint_will_always_be_the_same_for_same_datatable(): void
     {
         $this->assertSame(
@@ -57,35 +60,31 @@ class DataTableComponentTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function default_datatable_fingerprints_will_be_different_for_each_table(): void
     {
-        $mockTable = new class() extends PetsTable
-        {
-        };
+        $mockTable = new class extends PetsTable {};
 
         $this->assertNotSame($this->basicTable->getDataTableFingerprint(), $mockTable->getDataTableFingerprint());
     }
 
-    /** @test */
+    #[Test]
     public function default_fingerprint_will_be_url_friendy(): void
     {
         $mocks = [];
         for ($i = 0; $i < 9; $i++) {
-            $mocks[$i] = new class() extends PetsTable
-            {
-            };
+            $mocks[$i] = new class extends PetsTable {};
             $this->assertFalse(filter_var('http://'.$mocks[$i]->getDataTableFingerprint().'.dev', FILTER_VALIDATE_URL) === false);
         }
         // control
         $this->assertTrue(filter_var('http://[9/$].dev', FILTER_VALIDATE_URL) === false);
     }
 
-    /** @test */
+    #[Test]
     public function minimum_one_column_expected(): void
     {
-        $this->expectException(\Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException::class);
-        $table = new NoColumnsTable();
+        $this->expectException(NoColumnsException::class);
+        $table = new NoColumnsTable;
         $table->boot();
         $table->bootedComponentUtilities();
         $table->bootedWithData();

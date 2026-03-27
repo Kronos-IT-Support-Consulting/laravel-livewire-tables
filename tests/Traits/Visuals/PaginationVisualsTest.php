@@ -3,13 +3,14 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\{PetsTable};
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class PaginationVisualsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function pagination_shows_by_default(): void
     {
         Livewire::test(PetsTable::class)
@@ -18,14 +19,14 @@ class PaginationVisualsTest extends TestCase
             ->assertSeeHtml('<nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">');
     }
 
-    /** @test */
+    #[Test]
     public function per_page_shows_by_default(): void
     {
         Livewire::test(PetsTable::class)
             ->assertSeeHtml('wire:model.live="perPage"');
     }
 
-    /** @test */
+    #[Test]
     public function pagination_is_removed_when_hidden(): void
     {
         Livewire::test(PetsTable::class)
@@ -35,7 +36,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">');
     }
 
-    /** @test */
+    #[Test]
     public function pagination_is_removed_when_disabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -45,7 +46,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">');
     }
 
-    /** @test */
+    #[Test]
     public function per_page_is_removed_when_hidden(): void
     {
         Livewire::test(PetsTable::class)
@@ -54,7 +55,7 @@ class PaginationVisualsTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function per_page_is_removed_when_pagination_disabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -62,7 +63,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('wire:model.live="perPage"');
     }
 
-    /** @test */
+    #[Test]
     public function paged_results_label_shows_with_pagination_enabled_and_more_than_one_page(): void
     {
         Livewire::test(PetsTable::class)
@@ -71,21 +72,21 @@ class PaginationVisualsTest extends TestCase
             ->assertSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
-    /** @test */
+    #[Test]
     public function paged_results_label_doesnt_show_with_pagination_enabled_and_less_than_one_page(): void
     {
         Livewire::test(PetsTable::class)
             ->assertDontSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
-    /** @test */
+    #[Test]
     public function total_results_label_shows_with_one_page_and_pagination_enabled(): void
     {
         Livewire::test(PetsTable::class)
             ->assertSeeHtml('<p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
-    /** @test */
+    #[Test]
     public function total_results_label_shows_with_pagination_disabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -93,7 +94,7 @@ class PaginationVisualsTest extends TestCase
             ->assertSeeHtml('<p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
-    /** @test */
+    #[Test]
     public function paged_results_label_doesnt_show_with_pagination_hidden(): void
     {
         Livewire::test(PetsTable::class)
@@ -101,7 +102,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
-    /** @test */
+    #[Test]
     public function total_results_label_doesnt_show_with_pagination_hidden(): void
     {
         Livewire::test(PetsTable::class)
@@ -109,7 +110,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">');
     }
 
-    /** @test */
+    // #[Test]
     /* Broken Test - HtmlInOrder does not work cleanly */
     /*public function per_page_dropdown_renders_with_correct_values(): void
     {
@@ -117,7 +118,7 @@ class PaginationVisualsTest extends TestCase
             ->assertSeeHtmlInOrder(['<option value="10" wire:key="per-page-10-table">10</option>', '<option value="25" wire:key="per-page-25-table">25</option>', '<option value="50" wire:key="per-page-50-table">50</option>']);
     }*/
 
-    /** @test */
+    // #[Test]
     /* Broken Test - HtmlInOrder does not work cleanly */
     /*public function per_page_dropdown_renders_with_all_option(): void
     {
@@ -131,7 +132,7 @@ class PaginationVisualsTest extends TestCase
         ]);
     }*/
 
-    /** @test */
+    #[Test]
     public function per_page_dropdown_only_renders_with_accepted_values(): void
     {
         $this->expectException(DataTableConfigurationException::class);
@@ -140,21 +141,21 @@ class PaginationVisualsTest extends TestCase
             ->call('setPerPage', 15);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_currently_displayed_ids(): void
     {
         Livewire::test(PetsTable::class)->assertSet('paginationCurrentItems', [1, 2, 3, 4, 5])
             ->assertNotSet('paginationCurrentItems', [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     }
 
-    /** @test */
+    #[Test]
     public function can_get_currently_displayed_count(): void
     {
         Livewire::test(PetsTable::class)->assertSet('paginationCurrentCount', 5)
             ->assertNotSet('paginationCurrentCount', 125);
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_displayed_standard_tw(): void
     {
         Livewire::test(PetsTable::class)
@@ -167,7 +168,7 @@ class PaginationVisualsTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_displayed_simple_tw(): void
     {
         Livewire::test(PetsTable::class)
@@ -181,7 +182,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<span>of</span>');
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_not_displayed_standard_tw(): void
     {
         Livewire::test(PetsTable::class)
@@ -191,7 +192,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<span>of</span>');
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_not_displayed_simple_tw(): void
     {
         Livewire::test(PetsTable::class)
@@ -202,7 +203,7 @@ class PaginationVisualsTest extends TestCase
 
     //
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_displayed_standard_bs4(): void
     {
         Livewire::test(PetsTable::class)
@@ -216,7 +217,7 @@ class PaginationVisualsTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_displayed_simple_bs4(): void
     {
         Livewire::test(PetsTable::class)
@@ -230,7 +231,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<span>of</span>');
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_not_displayed_standard_bs4(): void
     {
         Livewire::test(PetsTable::class)
@@ -241,7 +242,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<span>of</span>');
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_not_displayed_simple_bs4(): void
     {
         Livewire::test(PetsTable::class)
@@ -251,7 +252,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<span>to</span>');
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_displayed_standard_bs5(): void
     {
         Livewire::test(PetsTable::class)
@@ -265,7 +266,7 @@ class PaginationVisualsTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_displayed_simple_bs5(): void
     {
         Livewire::test(PetsTable::class)
@@ -279,7 +280,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<span>of</span>');
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_not_displayed_standard_bs5(): void
     {
         Livewire::test(PetsTable::class)
@@ -290,7 +291,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<span>of</span>');
     }
 
-    /** @test */
+    #[Test]
     public function detailed_pagination_is_not_displayed_simple_bs5(): void
     {
         Livewire::test(PetsTable::class)
@@ -300,7 +301,7 @@ class PaginationVisualsTest extends TestCase
             ->assertDontSeeHtml('<span>to</span>');
     }
 
-    /** @test */
+    #[Test]
     public function pagination_field_can_set_colors(): void
     {
         Livewire::test(PetsTable::class)
@@ -332,7 +333,7 @@ class PaginationVisualsTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function pagination_field_can_set_styling(): void
     {
         Livewire::test(PetsTable::class)
@@ -371,7 +372,7 @@ class PaginationVisualsTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function pagination_field_can_remove_default_styling_and_colors(): void
     {
         Livewire::test(PetsTable::class)

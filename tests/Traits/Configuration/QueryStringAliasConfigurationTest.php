@@ -2,18 +2,19 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class QueryStringAliasConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_set_query_string_alias(): void
     {
         $this->assertSame('test', $this->basicTable->setQueryStringAlias('test')->getQueryStringAlias());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_query_string_in_configure_method(): void
     {
         $mock = new class extends PetsTable

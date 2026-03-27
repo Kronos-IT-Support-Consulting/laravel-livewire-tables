@@ -40,14 +40,11 @@ trait WithReordering
         $this->restartReorderingIfNecessary();
     }
 
-    public function enablePaginatedReordering(): void
-    {
-
-    }
+    public function enablePaginatedReordering(): void {}
 
     public function enableReordering(): void
     {
-        //$this->enablePaginatedReordering();
+        // $this->enablePaginatedReordering();
 
         $this->setReorderingSession();
         $this->setReorderingBackup();

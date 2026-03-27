@@ -2,12 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class FilterConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function filters_status_can_be_set(): void
     {
         $this->assertTrue($this->basicTable->getFiltersStatus());
@@ -29,7 +30,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getFiltersStatus());
     }
 
-    /** @test */
+    #[Test]
     public function filters_visibility_status_can_be_set(): void
     {
         $this->assertTrue($this->basicTable->getFiltersVisibilityStatus());
@@ -51,7 +52,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getFiltersVisibilityStatus());
     }
 
-    /** @test */
+    #[Test]
     public function filters_pills_status_can_be_set(): void
     {
         $this->assertTrue($this->basicTable->getFilterPillsStatus());
@@ -73,7 +74,7 @@ class FilterConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getFilterPillsStatus());
     }
 
-    /** @test */
+    #[Test]
     public function filters_layout_can_be_set(): void
     {
         $this->expectException(DataTableConfigurationException::class);
@@ -101,7 +102,7 @@ class FilterConfigurationTest extends TestCase
         $this->basicTable->setFilterLayout('popover');
     }
 
-    /** @test */
+    #[Test]
     public function filters_layout_popover_default_can_be_set(): void
     {
         $this->assertFalse($this->basicTable->filterSlideDownDefaultVisible);

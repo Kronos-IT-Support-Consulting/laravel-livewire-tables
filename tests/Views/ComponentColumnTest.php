@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
@@ -9,7 +10,7 @@ use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
 class ComponentColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function component_column_attributes_callback_return_can_not_be_an_string()
     {
         $this->expectException(DataTableConfigurationException::class);
@@ -18,7 +19,7 @@ class ComponentColumnTest extends TestCase
             ->attributes(fn () => 'string')->getContents(Pet::find(1));
     }
 
-    /** @test */
+    #[Test]
     public function component_column_component_has_to_be_an_string()
     {
         $column = ComponentColumn::make('Name')
@@ -26,7 +27,7 @@ class ComponentColumnTest extends TestCase
         $this->assertEquals('components.alert', $column->getComponentView());
     }
 
-    /** @test */
+    #[Test]
     public function component_column_component_view_has_to_be_set()
     {
         $this->expectException(DataTableConfigurationException::class);

@@ -3,19 +3,20 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class SearchVisualsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function search_shows_be_default(): void
     {
         Livewire::test(PetsTable::class)
             ->assertSeeHtml('wire:model.live="search"');
     }
 
-    /** @test */
+    #[Test]
     public function search_doesnt_show_if_search_disabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -23,7 +24,7 @@ class SearchVisualsTest extends TestCase
             ->assertDontSee('wire:model="search"');
     }
 
-    /** @test */
+    #[Test]
     public function search_doesnt_show_if_search_visibility_disabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -31,7 +32,7 @@ class SearchVisualsTest extends TestCase
             ->assertDontSee('wire:model="search"');
     }
 
-    /** @test */
+    // #[Test]
     /* Temporary Removal */
     /*
     public function search_clear_button_shows_when_there_is_input(): void
@@ -42,7 +43,7 @@ class SearchVisualsTest extends TestCase
             ->assertSeeHtml('<span wire:click="clearSearch"');
     }*/
 
-    /** @test */
+    #[Test]
     public function search_debounce_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)
@@ -51,7 +52,7 @@ class SearchVisualsTest extends TestCase
             ->assertSeeHtml('wire:model.live.debounce.1000ms="search"');
     }
 
-    /** @test */
+    #[Test]
     public function search_throttle_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)
@@ -60,7 +61,7 @@ class SearchVisualsTest extends TestCase
             ->assertSeeHtml('wire:model.live.throttle.1000ms="search"');
     }
 
-    /** @test */
+    #[Test]
     public function search_blur_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)
@@ -69,7 +70,7 @@ class SearchVisualsTest extends TestCase
             ->assertSeeHtml('wire:model.blur="search"');
     }
 
-    /** @test */
+    #[Test]
     public function search_defer_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)
@@ -77,7 +78,7 @@ class SearchVisualsTest extends TestCase
             ->assertSeeHtml('wire:model="search"');
     }
 
-    /** @test */
+    #[Test]
     public function search_live_filter_is_applied(): void
     {
         Livewire::test(PetsTable::class)

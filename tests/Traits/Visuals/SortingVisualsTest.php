@@ -3,6 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
@@ -14,7 +16,7 @@ class SortingVisualsTest extends TestCase
 
     public array $rsortNames = [];
 
-    public function testArraySetup(): array
+    public function test_array_setup(): array
     {
         $rSortNames = $aSortNames = $petNames = ['Cartman', 'Tux', 'May', 'Ben', 'Chico'];
         asort($aSortNames);
@@ -29,7 +31,7 @@ class SortingVisualsTest extends TestCase
         return $petNames;
     }
 
-    /** @test */
+    #[Test]
     public function th_headers_are_buttons_with_sorting_enabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -39,7 +41,7 @@ class SortingVisualsTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function th_headers_are_not_buttons_with_sorting_disabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -50,7 +52,7 @@ class SortingVisualsTest extends TestCase
             >');
     }
 
-    /** @test */
+    #[Test]
     public function th_headers_are_not_buttons_unless_the_column_is_sortable(): void
     {
         Livewire::test(PetsTable::class)
@@ -60,7 +62,7 @@ class SortingVisualsTest extends TestCase
             >');
     }
 
-    /** @test */
+    // #[Test]
     /** Needs updating for hero */
     /* public function th_header_icons_correct_based_on_sort_status(): void
      {
@@ -78,7 +80,7 @@ class SortingVisualsTest extends TestCase
              ]);
      }*/
 
-    /** @test */
+    #[Test]
     public function sorting_pill_shows_when_enabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -86,7 +88,7 @@ class SortingVisualsTest extends TestCase
             ->assertSee('Applied Sorting:');
     }
 
-    /** @test */
+    #[Test]
     public function sorting_pill_doesnt_shows_when_disabled(): void
     {
         Livewire::test(PetsTable::class)
@@ -95,7 +97,7 @@ class SortingVisualsTest extends TestCase
             ->assertDontSee('Applied Sorting:');
     }
 
-    /** @test */
+    #[Test]
     public function sorting_pills_only_show_if_there_are_sorts(): void
     {
         Livewire::test(PetsTable::class)
@@ -104,7 +106,7 @@ class SortingVisualsTest extends TestCase
             ->assertSee('Applied Sorting:');
     }
 
-    /** @test */
+    #[Test]
     public function only_one_sorting_pill_shows_with_single_column_on(): void
     {
         Livewire::test(PetsTable::class)
@@ -115,7 +117,7 @@ class SortingVisualsTest extends TestCase
             ->assertDontSee('Key: 0-9');
     }
 
-    /** @test */
+    #[Test]
     public function multiple_sorting_pill_shows_with_single_column_off(): void
     {
         Livewire::test(PetsTable::class)
@@ -126,7 +128,7 @@ class SortingVisualsTest extends TestCase
             ->assertSee('Key: 0-9');
     }
 
-    /** @test */
+    #[Test]
     public function sorting_pill_shows_correct_name_and_direction(): void
     {
         Livewire::test(PetsTable::class)
@@ -139,7 +141,7 @@ class SortingVisualsTest extends TestCase
             ->assertSee('9-0');
     }
 
-    /** @test */
+    #[Test]
     public function sorting_pills_clear_button_shows_and_functions(): void
     {
         Livewire::test(PetsTable::class)
@@ -149,7 +151,7 @@ class SortingVisualsTest extends TestCase
             ->assertDontSee('Name: A-Z');
     }
 
-    /** @test */
+    #[Test]
     public function sorting_pills_dont_show_for_unknown_columns(): void
     {
         Livewire::test(PetsTable::class)
@@ -157,11 +159,8 @@ class SortingVisualsTest extends TestCase
             ->assertDontSee('Name2: A-Z');
     }
 
-    /**
-     * @test
-     *
-     * @depends testArraySetup
-     */
+    #[Test]
+    #[Depends('test_array_setup')]
     public function default_sorting_gets_applied_if_set_and_there_are_no_sorts(array $petNames): void
     {
         Livewire::test(PetsTable::class)
@@ -170,11 +169,8 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->rsortNames);
     }
 
-    /**
-     * @test
-     *
-     * @depends testArraySetup
-     */
+    #[Test]
+    #[Depends('test_array_setup')]
     public function sort_direction_can_only_be_asc_or_desc(array $petNames): void
     {
         // If not asc, desc, default to asc
@@ -189,11 +185,8 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->rsortNames);
     }
 
-    /**
-     * @test
-     *
-     * @depends testArraySetup
-     */
+    #[Test]
+    #[Depends('test_array_setup')]
     public function skip_sorting_column_if_it_does_not_have_a_field(array $petNames): void
     {
         // Other col is a label therefore has no field
@@ -203,11 +196,8 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->default10);
     }
 
-    /**
-     * @test
-     *
-     * @depends testArraySetup
-     */
+    #[Test]
+    #[Depends('test_array_setup')]
     public function skip_sorting_column_if_it_is_not_sortable(array $petNames): void
     {
         // Other col is a label therefore is not sortable
@@ -217,11 +207,8 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->default10);
     }
 
-    /**
-     * @test
-     *
-     * @depends testArraySetup
-     */
+    #[Test]
+    #[Depends('test_array_setup')]
     public function sort_field_and_direction_are_applied_if_no_sort_callback(array $petNames): void
     {
         // TODO: Test that there is no callback
@@ -231,12 +218,10 @@ class SortingVisualsTest extends TestCase
             ->assertSeeInOrder($this->rsortNames);
     }
 
-    /**
-     * @test
-     *
-     * @depends testArraySetup
-     */
-    /*public function sort_events_apply_correctly(): void
+    /*
+    #[Test]
+    #[Depends("testArraySetup")]
+    public function sort_events_apply_correctly(): void
     {
         Livewire::test(PetsTable::class)
             ->assertSeeInOrder($this->default10)

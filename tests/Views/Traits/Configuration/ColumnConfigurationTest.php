@@ -2,13 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 class ColumnConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_set_column_to_eager_load_relations(): void
     {
         $column = Column::make('Name');
@@ -20,7 +21,7 @@ class ColumnConfigurationTest extends TestCase
         $this->assertTrue($column->eagerLoadRelationsIsEnabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_component_on_column(): void
     {
         $column = Column::make('Name');
@@ -32,7 +33,7 @@ class ColumnConfigurationTest extends TestCase
         $this->assertSame($this->basicTable, $column->getComponent());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_column_format(): void
     {
         $column = Column::make('Name');
@@ -44,7 +45,7 @@ class ColumnConfigurationTest extends TestCase
         $this->assertTrue($column->hasFormatter());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_column_wants_html(): void
     {
         $column = Column::make('Name');
@@ -56,7 +57,7 @@ class ColumnConfigurationTest extends TestCase
         $this->assertTrue($column->isHtml());
     }
 
-    /** @test */
+    #[Test]
     public function can_hide_column(): void
     {
         $column = Column::make('Name');
@@ -70,7 +71,7 @@ class ColumnConfigurationTest extends TestCase
         $this->assertFalse($column->isVisible());
     }
 
-    /** @test */
+    #[Test]
     public function can_exclude_from_column_select(): void
     {
         $column = Column::make('Name');
@@ -82,7 +83,7 @@ class ColumnConfigurationTest extends TestCase
         $this->assertFalse($column->isSelectable());
     }
 
-    /** @test */
+    #[Test]
     public function can_make_column_unclickable(): void
     {
         $column = Column::make('Name');
@@ -98,7 +99,7 @@ class ColumnConfigurationTest extends TestCase
         $this->assertFalse($column->isClickable());
     }
 
-    /** @test */
+    #[Test]
     public function can_deselect_column(): void
     {
         $column = Column::make('Name');
@@ -110,7 +111,7 @@ class ColumnConfigurationTest extends TestCase
         $this->assertFalse($column->isSelected());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_secondary_header_as_filter(): void
     {
         $column = Column::make('Name');
@@ -123,7 +124,7 @@ class ColumnConfigurationTest extends TestCase
         $this->assertInstanceOf(Filter::class, $column->getSecondaryHeaderCallback());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_footer_as_filter(): void
     {
         $column = Column::make('Name');

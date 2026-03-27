@@ -2,17 +2,18 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableMount;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class WithMountTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function mounttable_gets_correct_first_item(): void
     {
         $view = view('livewire-tables::datatable');
 
-        $table = new PetsTableMount();
+        $table = new PetsTableMount;
         $table->boot();
         $table->mount(102);
         $table->bootedComponentUtilities();
@@ -30,7 +31,7 @@ class WithMountTest extends TestCase
         $this->assertNotSame(strtoupper($rows->first()->name), 'CHICO');
         $this->assertNotSame(strtoupper($rows->first()->name), 'CARTMAN');
 
-        $table2 = new PetsTableMount();
+        $table2 = new PetsTableMount;
         $table2->boot();
         $table2->mount(202);
         $table2->bootedComponentUtilities();
@@ -47,7 +48,7 @@ class WithMountTest extends TestCase
         $this->assertNotSame(strtoupper($rows2->first()->name), 'CARTMAN');
         $this->assertNotSame(strtoupper($rows2->first()->name), 'MAY');
 
-        $table3 = new PetsTableMount();
+        $table3 = new PetsTableMount;
         $table3->boot();
         $table3->mount();
         $table3->bootedComponentUtilities();

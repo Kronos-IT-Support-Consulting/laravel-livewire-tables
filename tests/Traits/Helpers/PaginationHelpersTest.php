@@ -2,11 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class PaginationHelpersTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_get_pagination_status(): void
     {
         $this->assertTrue($this->basicTable->paginationIsEnabled());
@@ -20,7 +21,7 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->paginationIsEnabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_pagination_visibility_status(): void
     {
         $this->assertTrue($this->basicTable->paginationVisibilityIsEnabled());
@@ -34,7 +35,7 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->paginationVisibilityIsEnabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_computed_page_name(): void
     {
         $this->assertSame('page', $this->basicTable->getComputedPageName());
@@ -48,19 +49,19 @@ class PaginationHelpersTest extends TestCase
         $this->assertSame('newPage', $this->basicTable->getComputedPageName());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_per_page_selection(): void
     {
         $this->assertSame(10, $this->basicTable->getPerPage());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_per_page_accepted(): void
     {
         $this->assertSame([10, 25, 50], $this->basicTable->getPerPageAccepted());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_per_page_visibility_status(): void
     {
         $this->assertTrue($this->basicTable->perPageVisibilityIsEnabled());
@@ -74,7 +75,7 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->perPageVisibilityIsEnabled());
     }
 
-    /** @test */
+    #[Test]
     public function can_check_and_set_pagination_method(): void
     {
         $this->assertTrue($this->basicTable->isPaginationMethod('standard'));
@@ -88,21 +89,21 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->isPaginationMethod('standard'));
     }
 
-    /** @test */
+    #[Test]
     public function can_check_per_page_displayed_item_count(): void
     {
         $this->assertSame(5, $this->basicTable->getPerPageDisplayedItemCount());
 
     }
 
-    /** @test */
+    #[Test]
     public function can_check_per_page_displayed_items(): void
     {
         $this->assertSame([1, 2, 3, 4, 5], $this->basicTable->getPerPageDisplayedItemIds());
 
     }
 
-    /** @test */
+    #[Test]
     public function can_enable_detailed_pagination(): void
     {
 
@@ -117,7 +118,7 @@ class PaginationHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->showPaginationDetails());
     }
 
-    /** @test */
+    #[Test]
     public function can_disable_detailed_pagination(): void
     {
 
@@ -129,7 +130,7 @@ class PaginationHelpersTest extends TestCase
 
     }
 
-    /** @test */
+    #[Test]
     public function can_get_pagination_field_attributes(): void
     {
 

@@ -3,12 +3,13 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Configuration;
 
 use Closure;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
 class BooleanColumnConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function boolean_column_can_set_callback(): void
     {
         $column = BooleanColumn::make('Name');
@@ -22,7 +23,7 @@ class BooleanColumnConfigurationTest extends TestCase
         $this->assertTrue($column->getCallback() instanceof Closure);
     }
 
-    /** @test */
+    #[Test]
     public function boolean_column_can_set_success_value(): void
     {
         $column = BooleanColumn::make('Name');
@@ -34,7 +35,7 @@ class BooleanColumnConfigurationTest extends TestCase
         $this->assertFalse($column->getSuccessValue());
     }
 
-    /** @test */
+    #[Test]
     public function boolean_column_can_set_view(): void
     {
         $column = BooleanColumn::make('Name');

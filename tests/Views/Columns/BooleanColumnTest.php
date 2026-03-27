@@ -2,13 +2,14 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 
 class BooleanColumnTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_set_the_column_title(): void
     {
         $column = BooleanColumn::make('Name', 'name');
@@ -16,14 +17,14 @@ class BooleanColumnTest extends TestCase
         $this->assertSame('Name', $column->getTitle());
     }
 
-    /** @test */
+    #[Test]
     public function can_render_field(): void
     {
         $column = BooleanColumn::make('Name')->getContents(Pet::find(1));
         $this->assertNotEmpty($column);
     }
 
-    /** @test */
+    #[Test]
     public function can_not_render_field_if_no_title(): void
     {
         $this->expectException(\ArgumentCountError::class);
@@ -31,7 +32,7 @@ class BooleanColumnTest extends TestCase
         BooleanColumn::make()->getContents(Pet::find(1));
     }
 
-    /** @test */
+    #[Test]
     public function can_render_field_if_title_callback(): void
     {
         $column = BooleanColumn::make('Name')->getContents(Pet::find(1));
@@ -39,7 +40,7 @@ class BooleanColumnTest extends TestCase
         $this->assertNotEmpty($column);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_truthy_value(): void
     {
         $column = BooleanColumn::make('Name')->setSuccessValue(false)->getContents(Pet::find(1));
@@ -47,7 +48,7 @@ class BooleanColumnTest extends TestCase
         $this->assertNotEmpty($column);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_boolean_column_icons(): void
     {
         $column = BooleanColumn::make('Name')->setSuccessValue(false)->icons();
@@ -55,7 +56,7 @@ class BooleanColumnTest extends TestCase
         $this->assertSame('icons', $column->getType());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_boolean_column_yesno(): void
     {
         $column = BooleanColumn::make('Name')->setSuccessValue(false)->yesNo();
@@ -63,7 +64,7 @@ class BooleanColumnTest extends TestCase
         $this->assertSame('yes-no', $column->getType());
     }
 
-    /** @test */
+    #[Test]
     public function can_return_status_true(): void
     {
         $row = Pet::find(1);
@@ -75,7 +76,7 @@ class BooleanColumnTest extends TestCase
         $this->assertSame($curVal, true);
     }
 
-    /** @test */
+    #[Test]
     public function can_return_status_false(): void
     {
         $row = Pet::find(1);

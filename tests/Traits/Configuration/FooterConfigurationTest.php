@@ -2,12 +2,13 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class FooterConfigurationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_set_footer_status(): void
     {
         $this->assertTrue($this->basicTable->getFooterStatus());
@@ -29,7 +30,7 @@ class FooterConfigurationTest extends TestCase
         $this->assertTrue($this->basicTable->getFooterStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_use_header_as_footer_status(): void
     {
         $this->assertFalse($this->basicTable->getUseHeaderAsFooterStatus());
@@ -51,7 +52,7 @@ class FooterConfigurationTest extends TestCase
         $this->assertFalse($this->basicTable->getUseHeaderAsFooterStatus());
     }
 
-    /** @test */
+    #[Test]
     public function can_set_secondary_footer_tr_attributes(): void
     {
         $this->basicTable->setFooterTrAttributes(function ($rows) {
@@ -61,7 +62,7 @@ class FooterConfigurationTest extends TestCase
         $this->assertSame($this->basicTable->getFooterTrAttributes([]), ['default' => true, 'here' => 'there']);
     }
 
-    /** @test */
+    #[Test]
     public function can_set_footer_td_attributes(): void
     {
         $this->basicTable->setFooterTdAttributes(function (Column $column, $rows) {

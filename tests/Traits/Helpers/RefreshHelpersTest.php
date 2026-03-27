@@ -2,11 +2,12 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class RefreshHelpersTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_check_if_refresh_is_set(): void
     {
         $this->assertFalse($this->basicTable->hasRefresh());
@@ -16,7 +17,7 @@ class RefreshHelpersTest extends TestCase
         $this->assertTrue($this->basicTable->hasRefresh());
     }
 
-    /** @test */
+    #[Test]
     public function can_get_refresh_options(): void
     {
         $this->assertNull($this->basicTable->getRefreshOptions());

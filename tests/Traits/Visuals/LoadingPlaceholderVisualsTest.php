@@ -3,12 +3,13 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTableLoadingPlaceholder;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class LoadingPlaceholderVisualsTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function can_see_placeholder_section(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
@@ -17,7 +18,7 @@ class LoadingPlaceholderVisualsTest extends TestCase
             ->call('setPerPage', 5);
     }
 
-    /** @test */
+    #[Test]
     public function can_see_placeholder_custom_text(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
@@ -32,7 +33,7 @@ class LoadingPlaceholderVisualsTest extends TestCase
             ->call('setPerPage', 5);
     }
 
-    /** @test */
+    #[Test]
     public function can_see_correct_placeholder_text_visually(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)
@@ -41,7 +42,7 @@ class LoadingPlaceholderVisualsTest extends TestCase
             ->call('setPerPage', 5);
     }
 
-    /** @test */
+    #[Test]
     public function cannot_see_incorrect_placeholder_text_visually(): void
     {
         Livewire::test(PetsTableLoadingPlaceholder::class)

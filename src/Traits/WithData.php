@@ -10,6 +10,7 @@ use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
@@ -20,7 +21,7 @@ trait WithData
      */
     public function bootedWithData(): void
     {
-        //Sets up the Builder Instance
+        // Sets up the Builder Instance
         $this->setBuilder($this->builder());
     }
 
@@ -255,7 +256,7 @@ trait WithData
     /**
      * Add Rows And Generic Data to View
      */
-    public function renderingWithData(\Illuminate\View\View $view, array $data = []): void
+    public function renderingWithData(View $view, array $data = []): void
     {
         $view->with([
             'filterGenericData' => $this->getFilterGenericData(),
