@@ -2,10 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class ComponentHelpersTest extends TestCase
 {

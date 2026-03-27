@@ -2,10 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Features;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Features\AutoInjectRappasoftAssets;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class AutoInjectRappasoftAssetsTest extends TestCase
 {

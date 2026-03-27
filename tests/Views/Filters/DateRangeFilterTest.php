@@ -3,9 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
-
 use PHPUnit\Framework\Attributes\Test;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateRangeFilter;
 
 class DateRangeFilterTest extends FilterTestCase
 {

@@ -3,12 +3,11 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Mechanisms;
 
 use Carbon\Carbon;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Mechanisms\RappasoftFrontendAssets;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class RappasoftFrontendAssetsTest extends TestCase
 {

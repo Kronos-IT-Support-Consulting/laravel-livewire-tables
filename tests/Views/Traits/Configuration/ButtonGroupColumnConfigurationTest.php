@@ -2,11 +2,10 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Traits\Configuration;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ButtonGroupColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class ButtonGroupColumnConfigurationTest extends TestCase
 {

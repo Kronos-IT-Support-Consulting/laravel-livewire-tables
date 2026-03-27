@@ -3,9 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Events;
 
 use Illuminate\Support\Facades\Event;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-
 use PHPUnit\Framework\Attributes\Test;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ColumnsSelectedTest extends TestCase
 {

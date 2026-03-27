@@ -3,11 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Illuminate\Database\Eloquent\Model;
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class ComponentConfigurationTest extends TestCase
 {

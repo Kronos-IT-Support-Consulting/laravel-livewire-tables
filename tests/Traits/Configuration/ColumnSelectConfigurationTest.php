@@ -3,9 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Configuration;
 
 use Livewire\Exceptions\PropertyNotFoundException;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-
 use PHPUnit\Framework\Attributes\Test;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ColumnSelectConfigurationTest extends TestCase
 {

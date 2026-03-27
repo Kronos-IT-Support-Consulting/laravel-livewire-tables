@@ -2,10 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Columns;
 
+use PHPUnit\Framework\Attributes\Test;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Columns\DateColumn;
-
-use PHPUnit\Framework\Attributes\Test;
 
 class DateColumnTest extends TestCase
 {
