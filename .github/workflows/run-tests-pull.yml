@@ -13,12 +13,18 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        php: [8.1, 8.2, 8.3]
-        laravel: [10.*,11.*]
+        php: [8.1, 8.2, 8.3, 8.4, 8.5]
+        laravel: [10.*, 11.*, 12.*, 13.*]
         stability: [prefer-dist]
         exclude:
           - laravel: 11.*
             php: 8.1
+          - laravel: 12.*
+            php: 8.1
+          - laravel: 13.*
+            php: 8.1
+          - laravel: 13.*
+            php: 8.2
 
     name: STD-PULL - ${{ matrix.os }} - P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }}
     env:
@@ -27,7 +33,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup cache environment
         id: extcache
@@ -38,7 +44,7 @@ jobs:
           key: ${{ runner.os }}-${{ env.extensionKey }}
 
       - name: Cache extensions
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ steps.extcache.outputs.dir }}
           key: ${{ steps.extcache.outputs.key }}
@@ -63,7 +69,7 @@ jobs:
         run: |
           echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-STDPULL-PHP-${{ matrix.php }}-L${{ matrix.laravel }}-composer-${{ hashFiles('**/composer.json') }}
