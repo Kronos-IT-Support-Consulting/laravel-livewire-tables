@@ -3,11 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Views\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
-
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\Test;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
+use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 
 class MultiSelectDropdownFilterTest extends TestCase
 {
@@ -96,7 +95,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     }
 
     #[Test]
-    #[Depends("test_array_setup")]
+    #[Depends('test_array_setup')]
     public function can_get_filter_pill_value(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('Active')->options($optionsArray);
@@ -182,7 +181,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     }
 
     #[Test]
-    #[Depends("test_array_setup")]
+    #[Depends('test_array_setup')]
     public function can_set_filter_to_number(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
@@ -191,7 +190,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     }
 
     #[Test]
-    #[Depends("test_array_setup")]
+    #[Depends('test_array_setup')]
     public function can_set_filter_to_valid_value(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
@@ -213,7 +212,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     }
 
     #[Test]
-    #[Depends("test_array_setup")]
+    #[Depends('test_array_setup')]
     public function can_set_filter_first_option(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
@@ -223,7 +222,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     }
 
     #[Test]
-    #[Depends("test_array_setup")]
+    #[Depends('test_array_setup')]
     public function test_can_check_if_can_set_default_value(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);
@@ -236,7 +235,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     }
 
     #[Test]
-    #[Depends("test_array_setup")]
+    #[Depends('test_array_setup')]
     public function can_set_custom_filter_view(array $optionsArray): void
     {
         $filter = MultiSelectDropdownFilter::make('BreedID')->options($optionsArray);

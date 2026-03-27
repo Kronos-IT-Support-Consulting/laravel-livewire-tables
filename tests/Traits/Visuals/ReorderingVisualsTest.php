@@ -3,11 +3,10 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Visuals;
 
 use Livewire\Livewire;
-use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
-use Rappasoft\LaravelLivewireTables\Tests\TestCase;
-
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\Test;
+use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
+use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 
 class ReorderingVisualsTest extends TestCase
 {
@@ -106,7 +105,7 @@ class ReorderingVisualsTest extends TestCase
     }
 
     #[Test]
-    #[Depends("test_filter_array_setup")]
+    #[Depends('test_filter_array_setup')]
     public function sorting_is_disabled_on_reorder(array $filterDefaultArray): void
     {
         Livewire::test(PetsTable::class)
@@ -287,7 +286,7 @@ class ReorderingVisualsTest extends TestCase
     }
 
     #[Test]
-    #[Depends("test_filter_array_setup")]
+    #[Depends('test_filter_array_setup')]
     public function filters_are_disabled_on_reorder(array $filterDefaultArray): void
     {
         $customisedFilterArray = $filterDefaultArray;
@@ -311,7 +310,7 @@ class ReorderingVisualsTest extends TestCase
     }
 
     #[Test]
-    #[Depends("test_filter_array_setup")]
+    #[Depends('test_filter_array_setup')]
     public function filter_pills_hide_on_reorder(array $filterDefaultArray): void
     {
         $filterDefaultArray['breed'] = [1];
