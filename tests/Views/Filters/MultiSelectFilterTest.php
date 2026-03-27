@@ -10,7 +10,7 @@ class MultiSelectFilterTest extends TestCase
 {
     public array $optionsArray = [];
 
-    public function testArraySetup(): array
+    public function test_array_setup(): array
     {
         $this->optionsArray = $optionsArray = array_values(['Cartman', 'Tux', 'May', 'Ben', 'Chico']);
         $this->assertNotEmpty($optionsArray);
@@ -172,7 +172,7 @@ class MultiSelectFilterTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function can_set_filter_to_number(array $optionsArray): void
     {
@@ -184,7 +184,7 @@ class MultiSelectFilterTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function can_set_filter_to_valid_value(array $optionsArray): void
     {

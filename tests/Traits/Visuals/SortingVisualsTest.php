@@ -14,7 +14,7 @@ class SortingVisualsTest extends TestCase
 
     public array $rsortNames = [];
 
-    public function testArraySetup(): array
+    public function test_array_setup(): array
     {
         $rSortNames = $aSortNames = $petNames = ['Cartman', 'Tux', 'May', 'Ben', 'Chico'];
         asort($aSortNames);
@@ -160,7 +160,7 @@ class SortingVisualsTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function default_sorting_gets_applied_if_set_and_there_are_no_sorts(array $petNames): void
     {
@@ -173,7 +173,7 @@ class SortingVisualsTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function sort_direction_can_only_be_asc_or_desc(array $petNames): void
     {
@@ -192,7 +192,7 @@ class SortingVisualsTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function skip_sorting_column_if_it_does_not_have_a_field(array $petNames): void
     {
@@ -206,7 +206,7 @@ class SortingVisualsTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function skip_sorting_column_if_it_is_not_sortable(array $petNames): void
     {
@@ -220,7 +220,7 @@ class SortingVisualsTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function sort_field_and_direction_are_applied_if_no_sort_callback(array $petNames): void
     {

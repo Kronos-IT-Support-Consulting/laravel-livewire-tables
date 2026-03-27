@@ -2,7 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests;
 
+use Illuminate\View\ViewException;
 use Livewire\Livewire;
+use Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoColumnsTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\FailingTables\NoPrimaryKeyTable;
 use Rappasoft\LaravelLivewireTables\Tests\Http\Livewire\PetsTable;
@@ -32,7 +34,7 @@ class DataTableComponentTest extends TestCase
     /** @test */
     public function primary_key_has_to_be_set(): void
     {
-        $this->expectException(\Illuminate\View\ViewException::class);
+        $this->expectException(ViewException::class);
         Livewire::test(NoPrimaryKeyTable::class)
             ->call('setSearch', 'abcd');
     }
@@ -60,9 +62,7 @@ class DataTableComponentTest extends TestCase
     /** @test */
     public function default_datatable_fingerprints_will_be_different_for_each_table(): void
     {
-        $mockTable = new class() extends PetsTable
-        {
-        };
+        $mockTable = new class extends PetsTable {};
 
         $this->assertNotSame($this->basicTable->getDataTableFingerprint(), $mockTable->getDataTableFingerprint());
     }
@@ -72,9 +72,7 @@ class DataTableComponentTest extends TestCase
     {
         $mocks = [];
         for ($i = 0; $i < 9; $i++) {
-            $mocks[$i] = new class() extends PetsTable
-            {
-            };
+            $mocks[$i] = new class extends PetsTable {};
             $this->assertFalse(filter_var('http://'.$mocks[$i]->getDataTableFingerprint().'.dev', FILTER_VALIDATE_URL) === false);
         }
         // control
@@ -84,8 +82,8 @@ class DataTableComponentTest extends TestCase
     /** @test */
     public function minimum_one_column_expected(): void
     {
-        $this->expectException(\Rappasoft\LaravelLivewireTables\Exceptions\NoColumnsException::class);
-        $table = new NoColumnsTable();
+        $this->expectException(NoColumnsException::class);
+        $table = new NoColumnsTable;
         $table->boot();
         $table->bootedComponentUtilities();
         $table->bootedWithData();

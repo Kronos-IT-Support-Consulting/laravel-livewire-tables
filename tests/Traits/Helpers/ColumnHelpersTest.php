@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Tests\Traits\Helpers;
 
+use Illuminate\Support\Str;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
 use Rappasoft\LaravelLivewireTables\Tests\TestCase;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -220,7 +221,7 @@ class ColumnHelpersTest extends TestCase
         $this->assertSame(7, $this->basicTable->getVisibleTabletColumnsCount());
     }
 
-    /// *** ** //
+    // / *** ** //
 
     public function can_tell_if_columns_should_collapse_always(): void
     {
@@ -342,11 +343,11 @@ class ColumnHelpersTest extends TestCase
     {
         $column = Column::make('Name');
 
-        $this->assertSame(\Illuminate\Support\Str::slug($column->getTitle()), $column->getSlug());
+        $this->assertSame(Str::slug($column->getTitle()), $column->getSlug());
 
         $column->setCustomSlug('test123');
 
-        $this->assertSame(\Illuminate\Support\Str::slug('test123'), $column->getSlug());
+        $this->assertSame(Str::slug('test123'), $column->getSlug());
     }
 
     /** @test */

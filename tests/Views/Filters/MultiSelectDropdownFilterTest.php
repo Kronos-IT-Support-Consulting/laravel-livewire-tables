@@ -10,7 +10,7 @@ class MultiSelectDropdownFilterTest extends TestCase
 {
     public array $optionsArray = [];
 
-    public function testArraySetup(): array
+    public function test_array_setup(): array
     {
         $this->optionsArray = $optionsArray = array_values(['Cartman', 'Tux', 'May', 'Ben', 'Chico']);
         $this->assertNotEmpty($optionsArray);
@@ -95,7 +95,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function can_get_filter_pill_value(array $optionsArray): void
     {
@@ -184,7 +184,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function can_set_filter_to_number(array $optionsArray): void
     {
@@ -196,7 +196,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function can_set_filter_to_valid_value(array $optionsArray): void
     {
@@ -221,7 +221,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function can_set_filter_first_option(array $optionsArray): void
     {
@@ -234,7 +234,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function test_can_check_if_can_set_default_value(array $optionsArray): void
     {
@@ -250,7 +250,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     /**
      * @test
      *
-     * @depends testArraySetup
+     * @depends test_array_setup
      */
     public function can_set_custom_filter_view(array $optionsArray): void
     {
